@@ -1,0 +1,98 @@
+'use server'
+
+import PostModelNews from '../models/postModelsNews'
+import PostModelsAdministration from '../models/postModelsAdministration'
+import PostModelsTeacher from '../models/postModelsTeachers'
+import PostModelsSoviet from '../models/postModelsSoviet'
+import PostModelsSubject from '../models/postModelsSubject'
+
+import connectDB from '../config/database'
+import PostModelsPlan from '../models/postModelsPlan'
+
+export async function getPostsNews(perPage, page) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelNews.find().sort({ _id: -1 }).skip(perPage*(page-1)).limit(perPage)))
+		const dataCount = JSON.parse(JSON.stringify(await PostModelNews.countDocuments({})))
+
+		return { data, dataCount }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsNewsSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelNews.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsAdministration() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsAdministration.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsTeacher() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsTeacher.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsSoviet() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsSoviet.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsSubjects() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsSubject.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function getPostsSubjectsSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsSubject.find({ name: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsPlans() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsPlan.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}

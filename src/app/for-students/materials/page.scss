@@ -1,0 +1,29 @@
+@use '../../styles/media';
+@use '../../styles/mixins';
+
+.materials {
+	&-section {
+		padding-block: calc(var(--section-padding-y) * 2);
+	}
+	&-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--padding-base);
+
+		@include media.mobile {
+			@include mixins.center;
+		}
+
+		.tiles-wrapper {
+			aspect-ratio: 2.2796934865900385;
+
+			.tiles-text {
+				font-size: clamp(18px, 2.0833333333vw, 20px);
+			}
+		}
+		.tiles-block {
+			width: 100% !important;
+			height: 100% !important;
+		}
+	}
+}
