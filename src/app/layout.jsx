@@ -1,18 +1,29 @@
+'use client'
+
 import NextTopLoader from 'nextjs-toploader'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import './styles/styles.scss'
 import Marquee from './components/marquee/Marquee'
+import usePrefersColorScheme from './components/usePrefersColorScheme'
+import { useEffect } from 'react'
 
-export const metadata = {
-	title: 'Менеджмент МГУ',
-	description: 'Сайт факультета Менеджмент Ташкентского Филиала Московского Государственного Университета',
-	keyword: 'МГУ, ТФ МГУ, Менеджмент МГУ, Менеджмент ТФ МГУ, Филиал МГУ в Ташкенте, Ташкентский филиал МГУ, Московский Государственный Университет в Ташкенте, МГУ экономический факультет, Экономический факультета в Ташкенте, Экономический факультет',
-	icon: '/favicon.ico',
+// export const metadata = {
+// 	title: 'Менеджмент МГУ',
+// 	description: 'Сайт факультета Менеджмент Ташкентского Филиала Московского Государственного Университета',
+// 	keyword: 'МГУ, ТФ МГУ, Менеджмент МГУ, Менеджмент ТФ МГУ, Филиал МГУ в Ташкенте, Ташкентский филиал МГУ, Московский Государственный Университет в Ташкенте, МГУ экономический факультет, Экономический факультета в Ташкенте, Экономический факультет',
+// 	icon: '/favicon.ico',
 	
-}
+// }
 
 export default function RootLayout({ children }) {
+
+	const theme = usePrefersColorScheme();
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
 	return (
 		<html lang='en'>
 			<body>

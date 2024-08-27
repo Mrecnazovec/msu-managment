@@ -181,8 +181,11 @@ header {
 				opacity: 1;
 			}
 			&.close {
-				height: fit-content;
 				opacity: 0;
+				height: 0;
+				
+				
+
 			}
 
 			ul {
