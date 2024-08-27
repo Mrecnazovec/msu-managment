@@ -38,6 +38,9 @@
 					width: 100% !important;
 					aspect-ratio: 2.65 !important;
 				}
+				@include media.mobile {
+					aspect-ratio: 2 !important;
+				}
 			}
 		}
 	}

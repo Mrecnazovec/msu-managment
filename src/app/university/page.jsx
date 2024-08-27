@@ -59,9 +59,10 @@ const University = () => {
 						<h2 className='h2'>Дополнительные разделы с информацией:</h2>
 						<p>В разделах предоставлена актуальная информация про наш университет</p>
 
-						<Navigation params={params} />
+						
 					</div>
 				</div>
+				<Navigation params={params} />
 			</section>
 		</main>
 	)
