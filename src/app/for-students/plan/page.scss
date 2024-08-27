@@ -39,6 +39,10 @@
 				margin: 0;
 				padding: 10px;
 
+				@include media.mobile-s {
+					text-align: center;
+				}
+
 				&.disable {
 					display: block;
 				}

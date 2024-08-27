@@ -63,6 +63,10 @@
 			-webkit-box-orient: vertical;
 			overflow: hidden;
 			-webkit-line-clamp: 4;
+
+			span {
+				display: block;
+			}
 		}
 	}
 	.newsShow {

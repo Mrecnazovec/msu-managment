@@ -49,6 +49,9 @@
 		@include media.tablet {
 			order: -1;
 		}
+		@include media.mobile {
+			height: fit-content;
+		}
 		.empty-img {
 			width: 300px;
 			
