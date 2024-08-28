@@ -3,6 +3,8 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
 
+export const revalidate = 60
+
 export const metadata = {
 	title: 'Преподаватели',
 	description:'Страница "Преподаватели" сайта Менеджмента ТФ МГУ',	

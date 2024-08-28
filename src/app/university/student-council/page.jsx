@@ -2,6 +2,9 @@ import { getPostsSoviet } from '@/app/_actions/postActions'
 import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
+
+export const revalidate = 60
+
 export const metadata = {
 	title: 'Студ. совет',
 	description:'Страница "Студенческий совет" сайта Менеджмента ТФ МГУ',	

@@ -3,6 +3,8 @@ import { getPostsAdministration } from '@/app/_actions/postActions'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
 
+export const revalidate = 60
+
 export const metadata = {
 	title: 'Руководство',
 	description: 'Страница "Руководство" сайта Менеджмента ТФ МГУ',
