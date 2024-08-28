@@ -55,7 +55,10 @@
 
 		@include media.hover {
 			transform: scale(1.1);
-			filter: blur(1px);
+			
+			@include media.tablet {
+				transform: scale(1);
+			}
 		}
 	}
 }
