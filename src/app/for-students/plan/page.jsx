@@ -1,9 +1,10 @@
 import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import './page.scss'
 import { getPostsPlans } from '@/app/_actions/postActions'
-import Link from 'next/link'
 import PlanItem from './components/PlanItem'
 import LinkDownloadPlan from './components/LinkDownloadPlan'
+
+export const revalidate = 60
 
 export const metadata = {
 	title: 'Уч. план',

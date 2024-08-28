@@ -3,6 +3,8 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import NavigationItem from '@/app/components/navigationCards/NavigationItem'
 import './page.scss'
 
+export const revalidate = 60
+
 export const metadata = {
 	title: 'Материалы',
 	description:'Страница "Материалы" сайта Менеджмента ТФ МГУ',	

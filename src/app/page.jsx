@@ -3,6 +3,9 @@ import Banner from './components/banner/Banner'
 import News from './components/news/News'
 import Navigation from './components/navigationCards/Navigation'
 
+export const revalidate = 60
+
+
 export const metadata = {
 	title: 'Главная',
 	description:'Добро пожаловать на главную страницу сайта Менеджмента ТФ МГУ! На сайте вы найдёте много полезных материалов, которые помогут как студентам, так и тем, кто интересуется направлением Менеджмент в Ташкентском Филиале МГУ',	
