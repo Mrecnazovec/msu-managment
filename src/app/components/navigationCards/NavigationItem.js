@@ -2,7 +2,6 @@ import Link from 'next/link'
 import './navigationItem-module.scss'
 
 const NavigationItem = ({ width, link, title, href, height }) => {
-
 	const aspect = height ? width / height : width / 400
 
 	const styles = {

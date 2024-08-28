@@ -7,7 +7,11 @@ export const metadata = {
 	description:'Страница "Студенческий совет" сайта Менеджмента ТФ МГУ',	
 }
 
-const Council = () => {
+const Council = async() => {
+
+	const {data, error} = await getPostsSoviet()
+	
+
 	const breadcrumbs = [
 		{
 			title: 'Главная',
@@ -26,7 +30,7 @@ const Council = () => {
 		<main>
 			<h1 className='visually-hidden'>Преподавательский состав университета МГУ</h1>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
-			<PersonCardData props={getPostsSoviet} />
+			<PersonCardData props={data} />
 		</main>
 	)
 }

@@ -43,7 +43,7 @@ const NewsAll = async ({ searchParams }) => {
 					</div>
 					{isPageOutOfRange ? (
 						<div className='errorPage'>
-							<p className='h3'>Несуществующая старница</p>
+							<p className='h3'>Несуществующая страница</p>
 							<Link href='?page=1'>Перейти ко всем новостям</Link>
 						</div>
 					) : (

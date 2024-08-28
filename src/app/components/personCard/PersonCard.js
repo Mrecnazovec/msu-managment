@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 const PersonCard = (props) => {
+
+
 	return (
 		<div className='personCardMain'>
 			{props.data.map((item) => {

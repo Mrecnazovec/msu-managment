@@ -7,7 +7,11 @@ export const metadata = {
 	description:'Страница "Руководство" сайта Менеджмента ТФ МГУ',	
 }
 
-const Administration = () => {
+const Administration = async() => {
+
+	const {data, error} = await getPostsAdministration()
+	
+
 	const breadcrumbs = [
 		{
 			title:'Главная',
@@ -27,7 +31,7 @@ const Administration = () => {
 		<main>
 			<h1 className="visually-hidden">Руководство университета МГУ</h1>
 			<Breadcrumbs breadcrumbs={breadcrumbs}/>
-			<PersonCardData props={getPostsAdministration}/>
+			<PersonCardData props={data}/>
 		</main>
 	)
 }

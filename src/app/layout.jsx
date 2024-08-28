@@ -1,21 +1,19 @@
 import NextTopLoader from 'nextjs-toploader'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
-import './styles/styles.scss'
 import Marquee from './components/marquee/Marquee'
+import './styles/styles.scss'
 
 export const metadata = {
 	title: 'Менеджмент МГУ',
 	description: 'Сайт факультета Менеджмент Ташкентского Филиала Московского Государственного Университета',
-	keyword: 'МГУ, ТФ МГУ, Менеджмент МГУ, Менеджмент ТФ МГУ, Филиал МГУ в Ташкенте, Ташкентский филиал МГУ, Московский Государственный Университет в Ташкенте, МГУ экономический факультет, Экономический факультета в Ташкенте, Экономический факультет',
-	author:'Сальников Алесандр Андреевич',
+	keyword:
+		'МГУ, ТФ МГУ, Менеджмент МГУ, Менеджмент ТФ МГУ, Филиал МГУ в Ташкенте, Ташкентский филиал МГУ, Московский Государственный Университет в Ташкенте, МГУ экономический факультет, Экономический факультета в Ташкенте, Экономический факультет',
+	author: 'Сальников Алесандр Андреевич',
 	icon: '/favicon.ico',
-	
 }
 
 export default function RootLayout({ children }) {
-
-
 	return (
 		<html lang='en'>
 			<body>
@@ -32,7 +30,7 @@ export default function RootLayout({ children }) {
 				/>
 				<Header />
 				{children}
-				<Marquee/>
+				<Marquee />
 				<Footer />
 			</body>
 		</html>

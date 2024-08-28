@@ -7,7 +7,11 @@ export const metadata = {
 	description:'Страница "Преподаватели" сайта Менеджмента ТФ МГУ',	
 }
 
-const Teachers = () => {
+const Teachers = async() => {
+
+	const {data, error} = await getPostsTeacher()
+	
+
 	const breadcrumbs = [
 		{
 			title: 'Главная',
@@ -26,7 +30,7 @@ const Teachers = () => {
 		<main>
 			<h1 className='visually-hidden'>Преподавательский состав университета МГУ</h1>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
-			<PersonCardData props={getPostsTeacher} />
+			<PersonCardData props={data} />
 		</main>
 	)
 }

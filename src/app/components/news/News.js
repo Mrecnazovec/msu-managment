@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Swiper from '../swiper/Swiper'
 import './news.scss'
 import AllButton from '@/app/ui/AllButton'

@@ -3,7 +3,8 @@ import './personCardData.scss'
 
 const  PersonCardData = async({props}) => {
 
-	const {data, error} = await props()		
+	const data = props
+	
 
 	return (
 		<section className='personCardData'>
