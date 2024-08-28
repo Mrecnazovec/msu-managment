@@ -3,11 +3,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+
 const New = (props) => {
 	const item = props.props
 	const className = props.className
 
-	const [imgSrc, setImgSrc] = useState(item.imgPath || '/svg/user.svg')
+	const [imgSrc, setImgSrc] = useState(item.imgPath || '/images/news/error-news.svg')
 
 	const handleImageError = () => {
 		setImgSrc('/images/news/error-news.svg')

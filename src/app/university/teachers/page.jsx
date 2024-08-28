@@ -1,6 +1,7 @@
 import { getPostsTeacher } from '@/app/_actions/postActions'
 import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
-import PersonCardData from '@/app/components/personCard/PersonCardData'
+import PersonCard from '@/app/components/personCard/PersonCard'
+import './page.scss'
 
 export const metadata = {
 	title: 'Преподаватели',
@@ -30,7 +31,11 @@ const Teachers = async() => {
 		<main>
 			<h1 className='visually-hidden'>Преподавательский состав университета МГУ</h1>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
-			<PersonCardData props={data} />
+			<section className='personCardData'>
+				{data.map((item)=>(
+					<PersonCard key={item._id} data={item} />
+				))}
+			</section>
 		</main>
 	)
 }
