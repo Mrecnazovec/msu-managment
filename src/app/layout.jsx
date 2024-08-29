@@ -1,17 +1,21 @@
+'use client'
+
 import NextTopLoader from 'nextjs-toploader'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import Marquee from './components/marquee/Marquee'
 import './styles/styles.scss'
-
-export const metadata = {
-	title: 'Менеджмент Тф МГУ',
-	description:
-		'Факультет Менеджмент в Ташкентском филиале Московского государственного университета имени М.В.Ломоносова был открыт в 2023 году. На данный момент факультет активно развивается и обучает будущих специалистов в сфере экономики и менеджмента.',
-	authors: [{ name: 'Aleksandr A. Salnikov', url: 'https://t.me/AlexITdrom' }],
-}
+import useGlobal from './store'
+import { useEffect } from 'react'
 
 export default function RootLayout({ children }) {
+	const [globalState, globalActions] = useGlobal()
+	const { sign } = globalActions
+
+	useEffect(() => {
+		sign.initializeAuth()
+	}, [])
+
 	return (
 		<html lang='en'>
 			<body>

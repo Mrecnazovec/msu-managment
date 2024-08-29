@@ -10,6 +10,7 @@ header {
   top: 0;
   z-index: 1000;
   transition: transform 0.3s ease-in-out;
+	
 
 	&.hidden {
 		transform: translateY(-100%);
@@ -263,5 +264,22 @@ header {
 				}
 			}
 		}
+	}
+}
+
+
+.for-admin {
+	@include mixins.center;
+	width: 60px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	position: absolute;
+	color: var(--color-red);
+	top: 70px;
+	right: 20px;
+
+	svg {
+		width: 60px;
+		height: 60px;
 	}
 }

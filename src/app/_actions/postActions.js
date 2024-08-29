@@ -8,6 +8,7 @@ import PostModelsSubject from '../models/postModelsSubject'
 
 import connectDB from '../config/database'
 import PostModelsPlan from '../models/postModelsPlan'
+import PostModelsForAdmin from '../models/postModelsForAdmin'
 
 export async function getPostsNews(perPage, page) {
 	try {
@@ -91,6 +92,17 @@ export async function getPostsPlans() {
 		await connectDB()
 		const data = JSON.parse(JSON.stringify(await PostModelsPlan.find()))
 
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsForAdmin(login, password) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login:login, password:password})))
+		
 		return { data }
 	} catch (error) {
 		return error
