@@ -1,21 +1,15 @@
-'use client'
-
 import NextTopLoader from 'nextjs-toploader'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import Marquee from './components/marquee/Marquee'
 import './styles/styles.scss'
-import useGlobal from './store'
-import { useEffect } from 'react'
+
+export const metadata = {
+	title: 'Менеджмент Тф МГУ',
+	authors: [{ name: 'Aleksandr A. Salnikov', url: 'https://t.me/AlexITdrom' }],
+}
 
 export default function RootLayout({ children }) {
-	const [globalState, globalActions] = useGlobal()
-	const { sign } = globalActions
-
-	useEffect(() => {
-		sign.initializeAuth()
-	}, [])
-
 	return (
 		<html lang='en'>
 			<body>
