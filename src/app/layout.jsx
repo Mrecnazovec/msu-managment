@@ -8,7 +8,7 @@ export const metadata = {
 	title: 'Менеджмент Тф МГУ',
 	description:
 		'Факультет Менеджмент в Ташкентском филиале Московского государственного университета имени М.В.Ломоносова был открыт в 2023 году. На данный момент факультет активно развивается и обучает будущих специалистов в сфере экономики и менеджмента.',
-	authors: [{ name: 'Aleksandr A. Saknikov', url: 'https://t.me/AlexITdrom' }],
+	authors: [{ name: 'Aleksandr A. Salnikov', url: 'https://t.me/AlexITdrom' }],
 }
 
 export default function RootLayout({ children }) {
