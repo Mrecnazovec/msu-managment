@@ -9,6 +9,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs'
 
+export const revalidate = 60
+
 const ForAdmin = () => {
 
 	const { data: session, status } = useSession()
