@@ -5,7 +5,6 @@ import './page.scss'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-export const revalidate = 60
 
 export default function SignIn() {
 	const [login, setLogin] = useState('')
