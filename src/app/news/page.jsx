@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getPostsNews } from '../_actions/postActions'
+import { getPostsForAdmin, getPostsNews } from '../_actions/postActions'
 import New from '../components/news/New'
 import './page.scss'
 

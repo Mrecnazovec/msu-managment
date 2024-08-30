@@ -1,0 +1,58 @@
+@use '../../styles/mixins';
+@use '../../styles/media';
+
+.form {
+	@include mixins.center;
+	width: 380px;
+
+	form {
+		width: 100%;
+	}
+
+	label {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		&:not(:last-child) {
+			margin-bottom: var(--margin-base);
+		}
+	}
+
+	input {
+		width: 100%;
+		outline: none;
+		border: 1px solid var(--color-red);
+		border-radius: var(--border-radius-small);
+		background: transparent;
+		padding: 5px;
+		color: var(--color-red);
+
+		
+
+		&:focus {
+			outline: 1px solid var(--color-red);
+		}
+	}
+	button {
+		@include mixins.reset-button;
+		width: 100%;
+		padding: 5px;
+		color: var(--color-white);
+		border: 1px solid var(--color-red);
+		border-radius: var(--border-radius-small);
+		background-color: var(--color-red);
+		cursor: pointer;
+
+		@include media.hover {
+			background-color: transparent;
+			color: var(--color-red);
+		}
+	}
+	.errorMessage {
+		color: red;
+	}
+
+	.showPassword {
+		margin-bottom: var(--margin-base);
+	}
+}

@@ -10,6 +10,8 @@ import connectDB from '../config/database'
 import PostModelsPlan from '../models/postModelsPlan'
 import PostModelsForAdmin from '../models/postModelsForAdmin'
 
+// FIXME: GetPostsNews
+
 export async function getPostsNews(perPage, page) {
 	try {
 		await connectDB()
@@ -33,6 +35,10 @@ export async function getPostsNewsSolo(id) {
 	}
 }
 
+// FIXME: GetPostsNews
+
+// FIXME: getPostsAdministration
+
 export async function getPostsAdministration() {
 	try {
 		await connectDB()
@@ -43,6 +49,10 @@ export async function getPostsAdministration() {
 		return error
 	}
 }
+
+// FIXME: getPostsAdministration
+
+// FIXME: getPostsTeacher
 
 export async function getPostsTeacher() {
 	try {
@@ -55,6 +65,10 @@ export async function getPostsTeacher() {
 	}
 }
 
+// FIXME: getPostsTeacher
+
+// FIXME: getPostsSoviet
+
 export async function getPostsSoviet() {
 	try {
 		await connectDB()
@@ -65,6 +79,10 @@ export async function getPostsSoviet() {
 		return error
 	}
 }
+
+// FIXME: getPostsSoviet
+
+// FIXME: getPostsSubjects
 
 export async function getPostsSubjects() {
 	try {
@@ -87,6 +105,10 @@ export async function getPostsSubjectsSolo(id) {
 	}
 }
 
+// FIXME: getPostsSubjects
+
+// FIXME: getPostsPlans
+
 export async function getPostsPlans() {
 	try {
 		await connectDB()
@@ -98,13 +120,49 @@ export async function getPostsPlans() {
 	}
 }
 
-export async function getPostsForAdmin(login, password) {
+// FIXME: getPostsPlans
+
+// FIXME: getPostsForAdmin
+
+export async function getPostsForAdmin(login) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login:login, password:password})))
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login})))
 		
 		return { data }
 	} catch (error) {
 		return error
 	}
 }
+
+export async function getPostsForAdminSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({_id: id})))
+		
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function updatePostsForAdmin(userId, fullName, login, hashedPassword) {
+	try {
+		await connectDB();
+		const update = await PostModelsForAdmin.updateOne(
+			{ _id: userId },
+			{
+				$set: {
+					fullName: fullName,
+					login: login,
+					password: hashedPassword
+				}
+			}
+		);
+		return { success: update.nModified > 0 };
+	} catch (error) {
+		return { error: error.message };
+	}
+}
+
+// FIXME: getPostsForAdmin

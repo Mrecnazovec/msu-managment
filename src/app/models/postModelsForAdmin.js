@@ -2,21 +2,25 @@ import { Schema, model, models } from 'mongoose'
 
 const newShema = new Schema(
 	{
-		imgPath: {
+		fullName: {
 			type: String,
 			required: true,
 		},
-		name: {
+		password: {
 			type: String,
 			required: true,
 		},
-		job: {
+		role: {
 			type: String,
 			required: true,
 		},
-		modificators: {
+		login: {
 			type: String,
-			required: false,
+			required: true,
+		},
+		roleLevel: {
+			type: String,
+			required: true,
 		}
 	},
 	{ timestamps: true }

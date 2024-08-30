@@ -7,10 +7,9 @@ header {
 	height: 60px;
 	position: fixed;
 	width: 100%;
-  top: 0;
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out;
-	
+	top: 0;
+	z-index: 1000;
+	transition: transform 0.3s ease-in-out;
 
 	&.hidden {
 		transform: translateY(-100%);
@@ -44,9 +43,8 @@ header {
 					font-family: 'IBM Plex Sans';
 					position: relative;
 					transition-duration: var(--transition-duration);
-					
-					div {
 
+					div {
 						&.active {
 							color: var(--color-gold);
 						}
@@ -184,9 +182,6 @@ header {
 			&.close {
 				opacity: 0;
 				height: 0;
-				
-				
-
 			}
 
 			ul {
@@ -195,9 +190,6 @@ header {
 				li {
 					list-style-type: none;
 					width: 100%;
-
-
-					
 
 					div {
 						display: flex;
@@ -267,7 +259,6 @@ header {
 	}
 }
 
-
 .for-admin {
 	@include mixins.center;
 	width: 60px;
@@ -275,11 +266,21 @@ header {
 	border-radius: 50%;
 	position: absolute;
 	color: var(--color-red);
+	overflow: hidden;
 	top: 70px;
 	right: 20px;
 
+	@include media.mobile {
+		width: 30px;
+		right: 35px;
+	}
+
 	svg {
-		width: 60px;
-		height: 60px;
+		width: 100%;
+		height: 100%;
+	}
+	img {
+		width: 100%;
+		height: 100%;
 	}
 }

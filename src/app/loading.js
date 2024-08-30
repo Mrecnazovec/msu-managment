@@ -1,6 +1,6 @@
 'use client'
 import './styles/loading.scss'
-export default function Page() {
+export default function Loading() {
 	return (
 		<>
 			<main className='loading'>
