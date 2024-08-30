@@ -3,9 +3,10 @@
 
 .auth {
 	@include mixins.center;
+	padding-inline: calc(var(--section-padding-y)*2);
 
 	.form {
-		width: 380px;
+		width: 360px;
 		@include mixins.center;
 
 		form {
