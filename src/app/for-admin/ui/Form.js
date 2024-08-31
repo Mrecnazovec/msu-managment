@@ -44,12 +44,11 @@ const Form = ({ param }) => {
 
 	if (status === 'unauthenticated') {
 		redirect('/for-admin/auth')
-		return null
 	}
 
 	const info = session?.user?.name
 	if (info?._id !== param[3].id) {
-		redirect('/for-admin')
+		router.replace('/for-admin')
 	}
 
 	const handleFileChange = (e) => {

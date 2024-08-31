@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import './page.scss'
 import { signIn, useSession } from 'next-auth/react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Loading from '@/app/loading'
 
 
@@ -42,8 +42,7 @@ export default function SignIn() {
 	}
 
 	if (status === 'authenticated') {
-		redirect('/for-admin')
-		return null
+		router.replace('/for-admin')
 	}
 
 	return (
