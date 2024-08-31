@@ -38,16 +38,16 @@ const Form = ({ param }) => {
 		}
 	}, [imgChange])
 
-	if (status === 'loading') {
-		return <Loading />
-	}
+	// if (status === 'loading') {
+	// 	return <Loading />
+	// }
 
-	if (status === 'unauthenticated') {
-		redirect('/for-admin/auth')
-	}
+	// if (status === 'unauthenticated') {
+	// 	redirect('/for-admin/auth')
+	// }
 
 	const info = session?.user?.name
-	if (info?._id !== param[3].id) {
+	if ( status === 'authenticated' && info?._id !== param[3].id) {
 		router.replace('/for-admin')
 	}
 
