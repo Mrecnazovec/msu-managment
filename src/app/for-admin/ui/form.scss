@@ -5,6 +5,34 @@
 	@include mixins.center;
 	width: 360px;
 
+	.avatar-box {
+		width: 100%;
+		aspect-ratio: 1;
+		@include mixins.center;
+		background: var(--color-gradient);
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		cursor: pointer;
+
+
+		svg {
+			width: 100%;
+			color: var(--color-gold);
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+
+
+	}
+	.avatar-change {
+		cursor: pointer;
+		text-align: center;
+		color: var(--color-red);
+	}
+
 	form {
 		width: 100%;
 	}
@@ -42,11 +70,17 @@
 		border-radius: var(--border-radius-small);
 		background-color: var(--color-red);
 		cursor: pointer;
+		margin-bottom: var(--margin-base);
+
 
 		@include media.hover {
 			background-color: transparent;
 			color: var(--color-red);
 		}
+	}
+	.ready {
+		text-align: center;
+		color: var(--color-red);
 	}
 	.errorMessage {
 		color: red;

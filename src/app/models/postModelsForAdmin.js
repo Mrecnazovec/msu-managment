@@ -21,6 +21,10 @@ const newShema = new Schema(
 		roleLevel: {
 			type: String,
 			required: true,
+		},
+		imgPath: {
+			type: String,
+			required: true,
 		}
 	},
 	{ timestamps: true }

@@ -146,19 +146,22 @@ export async function getPostsForAdminSolo(id) {
 	}
 }
 
-export async function updatePostsForAdmin(userId, fullName, login, hashedPassword) {
+export async function updatePostsForAdmin(object) {
+
 	try {
 		await connectDB();
 		const update = await PostModelsForAdmin.updateOne(
-			{ _id: userId },
+			{ _id: object.userId },
 			{
 				$set: {
-					fullName: fullName,
-					login: login,
-					password: hashedPassword
+					imgPath: object.path,
+					fullName: object.fullName,
+					login: object.login,
+					password: object.password,
 				}
 			}
 		);
+		
 		return { success: update.nModified > 0 };
 	} catch (error) {
 		return { error: error.message };

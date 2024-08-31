@@ -20,6 +20,8 @@ const page = async ({ params }) => {
 		},
 		{
 			id: data[0]._id,
+			imgPath: data[0].imgPath,
+			gender: data[0].gender,
 		}
 	]
 

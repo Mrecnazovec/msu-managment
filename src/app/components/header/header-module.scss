@@ -271,8 +271,7 @@ header {
 	right: 20px;
 
 	@include media.mobile {
-		width: 30px;
-		right: 35px;
+		padding: 15px;
 	}
 
 	svg {

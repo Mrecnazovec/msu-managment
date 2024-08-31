@@ -7,16 +7,17 @@
 
 		.office {
 			display: flex;
-			gap: var(--margin-base);
+			gap: calc(var(--margin-base) * 2);
 
 			@include media.mobile {
 				flex-direction: column;
 				justify-content: center;
+				gap: calc(var(--margin-base));
 			}
 
 			&-img-box {
-				width: 33%;
-				aspect-ratio: 1.5;
+				width: 25%;
+				aspect-ratio: 1;
 				background: var(--color-gradient);
 				border-radius: var(--border-radius);
 				overflow: hidden;
@@ -71,6 +72,7 @@
 				}
 
 				p {
+					margin-bottom: calc(var(--margin-base) / 2);
 				}
 
 				a {

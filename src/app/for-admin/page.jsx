@@ -9,9 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs'
 
-
 const ForAdmin = () => {
-
 	const { data: session, status } = useSession()
 	const info = session?.user?.name
 
@@ -33,7 +31,6 @@ const ForAdmin = () => {
 		},
 	]
 
-
 	return (
 		<main className='forAdmin'>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
@@ -44,7 +41,7 @@ const ForAdmin = () => {
 						<div className='office'>
 							<div className='office-img-box'>
 								{info?.imgPath ? (
-									<Image  width={360} height={240} className='office-avatar' src={info?.imgPath} />
+									<Image width={360} height={240} className='office-avatar' src={info?.imgPath} />
 								) : info?.gender === 'male' ? (
 									<svg width='150' height='150' viewBox='0 0 150 150' fill='none' xmlns='http://www.w3.org/2000/svg'>
 										<g clipPath='url(#clip0_244_175)'>
@@ -116,11 +113,12 @@ const ForAdmin = () => {
 								)}
 							</div>
 							<div className='office-text-box'>
+								<div>
 									<p className='name h2'>{info?.fullName}</p>
 									<p className='role h3'>{info?.role}</p>
-								<Link href={`/for-admin/${info?._id}`}>Изменить информацию</Link>
-                <button onClick={()=>signOut()}>Выйти</button>
-
+									<Link href={`/for-admin/${info?._id}`}>Изменить информацию</Link>
+								</div>
+								<button onClick={() => signOut()}>Выйти</button>
 							</div>
 						</div>
 					</div>
