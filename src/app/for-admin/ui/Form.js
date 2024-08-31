@@ -38,13 +38,13 @@ const Form = ({ param }) => {
 		}
 	}, [imgChange])
 
-	// if (status === 'loading') {
-	// 	return <Loading />
-	// }
+	if (status === 'loading') {
+		return <Loading />
+	}
 
-	// if (status === 'unauthenticated') {
-	// 	redirect('/for-admin/auth')
-	// }
+	if (status === 'unauthenticated') {
+		redirect('/for-admin/auth')
+	}
 
 	const info = session?.user?.name
 	if ( status === 'authenticated' && info?._id !== param[3].id) {
@@ -61,7 +61,7 @@ const Form = ({ param }) => {
 		}
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmitTwo = async (e) => {
 		e.preventDefault()
 		const data = new FormData()
 		data.set('file', selectedFile)
@@ -116,7 +116,7 @@ const Form = ({ param }) => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} encType='multipart/form-data' className='form'>
+		<form onSubmit={handleSubmitTwo} encType='multipart/form-data' className='form'>
 			<label>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />
 				<div className='avatar-box'>
