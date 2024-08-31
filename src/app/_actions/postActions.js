@@ -154,7 +154,7 @@ export async function updatePostsForAdmin(object) {
 			{ _id: object.userId },
 			{
 				$set: {
-					imgPath: object.path,
+					imgPath: object.imgChange,
 					fullName: object.fullName,
 					login: object.login,
 					password: object.password,

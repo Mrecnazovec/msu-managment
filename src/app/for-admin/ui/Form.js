@@ -73,16 +73,19 @@ const Form = ({ param }) => {
 				return
 			}
 
-			const response = await fetch('/api/upload', {
-				method: 'POST',
-				body: data,
-			})
+			if (selectedFile) {
+				const response = await fetch('/api/upload', {
+					method: 'POST',
+					body: data,
+				})
 
-			const result = selectedFile ? await response.json() : ''
+				const result = selectedFile ? await response.json() : ''
 
-			const path = result ? result.path.replace(/\\/g, '/') : imgPath
+				const path = !result ? imgPath : result.path.replace(/\\/g, '/')
+				setImgChange(path)
+			}
 
-			const object = { userId, fullName, login, password, path }
+			const object = { userId, fullName, login, password, imgChange }
 			console.log(object)
 
 			const res = await updatePostsForAdmin(object)
@@ -111,7 +114,7 @@ const Form = ({ param }) => {
 		}
 	}
 
-	const deleteImg =()=>{
+	const deleteImg = () => {
 		setImgPath('')
 	}
 
