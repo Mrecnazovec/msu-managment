@@ -73,19 +73,16 @@ const Form = ({ param }) => {
 				return
 			}
 
-			if (selectedFile) {
-				const response = await fetch('/api/upload', {
-					method: 'POST',
-					body: data,
-				})
+			const response = await fetch('/api/upload', {
+				method: 'POST',
+				body: data,
+			})
 
-				const result = selectedFile ? await response.json() : ''
+			const result = selectedFile ? await response.json() : ''
 
-				const path = !result ? imgPath : result.path.replace(/\\/g, '/')
-				setImgChange(path)
-			}
+			const path = !result ? imgPath : result.path.replace(/\\/g, '/')
 
-			const object = { userId, fullName, login, password, imgChange }
+			const object = { userId, fullName, login, password, path }
 			console.log(object)
 
 			const res = await updatePostsForAdmin(object)

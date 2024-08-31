@@ -4,11 +4,9 @@ import { useState } from 'react'
 import './page.scss'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import Loading from '@/app/loading'
 
 
 export default function SignIn() {
-	const { data: session, status } = useSession()
 
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
@@ -34,15 +32,6 @@ export default function SignIn() {
 			router.replace('/for-admin')
 
 		} catch (error) {}
-	}
-
-	
-	if (status === 'loading') {
-		return <Loading />
-	}
-
-	if (status === 'authenticated') {
-		router.replace('/for-admin')
 	}
 
 	return (
