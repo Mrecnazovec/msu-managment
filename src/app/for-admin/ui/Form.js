@@ -11,7 +11,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const Form = ({ param }) => {
-	// const { data: session, status } = useSession()
+	const { data: session, status } = useSession()
 
 	const router = useRouter()
 
@@ -38,20 +38,19 @@ const Form = ({ param }) => {
 		}
 	}, [imgChange])
 
-	// if (status === 'loading') {
-	// 	return <Loading />
-	// }
+	if (status === 'loading') {
+		return <Loading />
+	}
 
-	// if (status === 'unauthenticated') {
-	// 	redirect('/for-admin/auth')
-	// 	return null
-	// }
+	if (status === 'unauthenticated') {
+		redirect('/for-admin/auth')
+		return null
+	}
 
-	// const info = session?.user?.name
-	// if (info?._id !== param[3].id) {
-	// 	redirect('/for-admin')
-	// 	return null
-	// }
+	const info = session?.user?.name
+	if (info?._id !== param[3].id) {
+		redirect('/for-admin')
+	}
 
 	const handleFileChange = (e) => {
 		const file = e.target.files[0]

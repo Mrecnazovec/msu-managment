@@ -8,6 +8,7 @@ import Loading from '@/app/loading'
 
 
 export default function SignIn() {
+	const { data: session, status } = useSession()
 
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
@@ -36,7 +37,14 @@ export default function SignIn() {
 	}
 
 	
+	if (status === 'loading') {
+		return <Loading />
+	}
 
+	if (status === 'authenticated') {
+		redirect('/for-admin')
+		return null
+	}
 
 	return (
 		<main className='auth'>
