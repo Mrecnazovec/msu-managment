@@ -1,11 +1,10 @@
 'use client'
 
-import { useState } from 'react'
-import './page.scss'
+import Loading from '@/app/loading'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import Loading from '@/app/loading'
-
+import { useState } from 'react'
+import './page.scss'
 
 export default function SignIn() {
 	const { data: session, status } = useSession()
@@ -14,7 +13,7 @@ export default function SignIn() {
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 
-	const router = useRouter();
+	const router = useRouter()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -26,17 +25,15 @@ export default function SignIn() {
 				redirect: false,
 			})
 
-			if (res.error){
+			if (res.error) {
 				setError('Неверный логин или пароль')
-				return;
+				return
 			}
 
 			router.replace('/for-admin')
-
 		} catch (error) {}
 	}
 
-	
 	if (status === 'loading') {
 		return <Loading />
 	}

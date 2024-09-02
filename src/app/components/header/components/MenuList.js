@@ -19,6 +19,10 @@ const MenuList = () => {
 					title:'Студ. совет',
 					href:'/university/student-council'
 				},
+				{
+					title:'Новости',
+					href:'/news'
+				},
 			]
 		},
 		{
@@ -32,6 +36,10 @@ const MenuList = () => {
 				{
 					title:'Уч. План',
 					href:'/for-students/plan'
+				},
+				{
+					title:'Менторы',
+					href:'/for-students/mentors'
 				},
 				{
 					title:'Помощь',

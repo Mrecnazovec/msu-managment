@@ -12,11 +12,15 @@
 	cursor: pointer;
 	font-size: 16px;
 
+
+
 	@include media.hover {
 		background-color: transparent;
 		color: var(--color-red);
 		border: 1px solid var(--color-red);
 	}
 
-
+	&.none {
+		display: none;
+	}
 }

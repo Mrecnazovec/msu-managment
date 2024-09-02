@@ -47,9 +47,18 @@
 			flex-direction: column;
 		}
 	}
-	&-help {
+	&-mentors {
 		.container {
 			background-color: var(--color-secondary);
+			padding-block: calc(var(--section-padding-y));
+		}
+		.container-section {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&-help {
+		.container {
 			padding-block: calc(var(--section-padding-y));
 		}
 		.container-section {

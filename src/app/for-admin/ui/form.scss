@@ -14,6 +14,12 @@
 		overflow: hidden;
 		cursor: pointer;
 
+		@include media.mobile {
+			aspect-ratio: 1.75;
+		}
+		@include media.mobile-s {
+			aspect-ratio: 1.75;
+		}
 
 		svg {
 			width: 100%;

@@ -4,19 +4,31 @@ const newShema = new Schema(
 	{
 		imgPath: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		name: {
 			type: String,
 			required: true,
 		},
-		job: {
+		about: {
 			type: String,
 			required: true,
 		},
-		subject: {
+		modificators: {
 			type: String,
-			required: true,
+			required: false,
+		},
+		href: {
+			type: String,
+			required: false,
+		},
+		link: {
+			type: String,
+			required: false,
+		},
+		span: {
+			type: String,
+			required: false,
 		},
 	},
 	{ timestamps: true }

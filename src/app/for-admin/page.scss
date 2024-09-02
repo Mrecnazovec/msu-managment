@@ -82,4 +82,59 @@
 			}
 		}
 	}
+
+	&-options {
+		padding-block: var(--section-padding-y);
+
+		&-section {
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--margin-base);
+			justify-content: space-between;
+
+			@include media.tablet {
+				gap: calc(var(--margin-base) / 2);
+			}
+
+			@include media.mobile {
+				@include mixins.center;
+			}
+		}
+
+		.actions {
+			margin-bottom: calc(var(--margin-base) / 2);
+		}
+		a {
+			@include mixins.center;
+
+			color: var(--color-red);
+			width: 30%;
+			text-align: center;
+
+			@include media.mobile {
+				width: 70%;
+			}
+			@include media.mobile-s {
+				width: 90%;
+			}
+		}
+		article {
+			width: 100%;
+			aspect-ratio: 3/2;
+
+			height: 100%;
+			background: var(--color-gradient);
+			border-radius: var(--border-radius);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 30px;
+
+			svg {
+				color: var(--color-gold);
+				width: 90%;
+				aspect-ratio: 1;
+			}
+		}
+	}
 }

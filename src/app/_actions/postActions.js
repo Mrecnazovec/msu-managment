@@ -9,6 +9,7 @@ import PostModelsSubject from '../models/postModelsSubject'
 import connectDB from '../config/database'
 import PostModelsPlan from '../models/postModelsPlan'
 import PostModelsForAdmin from '../models/postModelsForAdmin'
+import PostModelsMentors from '../models/PostModelsMentors'
 
 // FIXME: GetPostsNews
 
@@ -28,6 +29,17 @@ export async function getPostsNewsSolo(id) {
 	try {
 		await connectDB()
 		const data = JSON.parse(JSON.stringify(await PostModelNews.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function deletePostsNews(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelNews.deleteOne({_id: id})))
 
 		return { data }
 	} catch (error) {
@@ -81,6 +93,21 @@ export async function getPostsSoviet() {
 }
 
 // FIXME: getPostsSoviet
+
+// FIXME: getPostsMentors
+
+export async function getPostsMentors() {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsMentors.find()))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+// FIXME: getPostsMentors
 
 // FIXME: getPostsSubjects
 

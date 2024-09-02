@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import { getPostsForAdmin, getPostsNews } from '../_actions/postActions'
+import { getPostsNews } from '../_actions/postActions'
+import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs'
 import New from '../components/news/New'
+import ChangeButton from '../ui/ChangeButton'
 import './page.scss'
 
 export const metadata = {
 	title: 'Новости',
-	description:'Страница "Новости" сайта Менеджмента ТФ МГУ',	
+	description: 'Страница "Новости" сайта Менеджмента ТФ МГУ',
 }
-
 
 const NewsAll = async ({ searchParams }) => {
 	let page = parseInt(searchParams.page, 10)
@@ -30,12 +31,32 @@ const NewsAll = async ({ searchParams }) => {
 		}
 	}
 
+	const breadcrumbs = [
+		{
+			title: 'Главная',
+			href: '/',
+		},
+		{
+			title: 'Университет',
+			href: '/university',
+		},
+		{
+			title: 'Все новости',
+		},
+	]
+
 	return (
 		<main>
+			<Breadcrumbs breadcrumbs={breadcrumbs} />
+
 			<section className='news'>
 				<h1 className='visually-hidden'>Новости ТФ МГУ</h1>
+
 				<div className='container'>
 					<h2>Все новости</h2>
+					<div className='changeButton'>
+						<ChangeButton text='Изменить новости' href='/for-admin/news-change' />
+					</div>
 					<div className='news-content'>
 						{data.map((item) => (
 							<New key={item._id} props={item} className='news-content-single' />

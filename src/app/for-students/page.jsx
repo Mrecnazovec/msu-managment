@@ -36,6 +36,17 @@ const forStudents = () => {
 					</div>
 				</div>
 			</section>
+			<section className='for-students-mentors'>
+				<div className='container'>
+					<div className='container-section'>
+						<h2>Менторы</h2>
+						<p className='paragraph'>
+						Менторы это люди которые помогут вам в адаптации к университету, а также при возникновении проблем помогут их решить. Не стесняйтесь обращаться!
+						</p>
+						<NavigationItem width='1060' link='/images/pictures/mentors.jpg' title='Менторы' href='/for-students/mentors'/>
+					</div>
+				</div>
+			</section>
 			<section className='for-students-help'>
 				<div className='container'>
 					<div className='container-section'>

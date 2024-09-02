@@ -1,0 +1,10 @@
+.personCardData {
+
+	.personCardMain:nth-child(2n) {
+		background-color: var(--color-secondary);
+		.img-box {
+			order: -1;
+			background-color: var(--color-main);
+		}
+	}
+}

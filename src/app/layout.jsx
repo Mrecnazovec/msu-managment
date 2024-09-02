@@ -2,12 +2,13 @@ import NextTopLoader from 'nextjs-toploader'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import Marquee from './components/marquee/Marquee'
-import './styles/styles.scss'
 import { AuthProvider } from './Providers'
+import './styles/styles.scss'
 
 export const metadata = {
 	title: 'Факультет Менеджмент ТФ МГУ имени М.В.Ломоносова',
 	authors: [{ name: 'Aleksandr A. Salnikov', url: 'https://t.me/AlexITdrom' }],
+	icon: './icon.ico',
 }
 
 export default function RootLayout({ children }) {

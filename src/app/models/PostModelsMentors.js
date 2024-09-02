@@ -34,6 +34,6 @@ const newShema = new Schema(
 	{ timestamps: true }
 )
 
-const PostModelsAdministration = models.administration || model('administration', newShema)
+const PostModelsMentors = models.mentor || model('mentor', newShema)
 
-export default PostModelsAdministration;
+export default PostModelsMentors
