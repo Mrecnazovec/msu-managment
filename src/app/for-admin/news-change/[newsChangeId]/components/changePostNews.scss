@@ -4,6 +4,7 @@
 form {
 	.start {
 		align-self:flex-start;
+		margin-bottom: var(--margin-base);
 	}
 	@include mixins.center;
 	.preview-box {
@@ -12,8 +13,7 @@ form {
 		background: var(--color-gradient);
 		border-radius: var(--border-radius);
 		cursor: pointer;
-		width: 360px;
-		height: 240px;
+
 
 		@include mixins.center;
 
