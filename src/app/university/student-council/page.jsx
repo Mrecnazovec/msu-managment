@@ -3,6 +3,7 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
 import Link from 'next/link'
+import ChangeButton from '@/app/ui/ChangeButton'
 
 export const revalidate = 10
 
@@ -16,7 +17,7 @@ const Council = async ({ searchParams }) => {
 	page = !page || page < 1 ? 1 : page
 	const perPage = 10
 
-	const { data, dataCount, error } = await getPostsSoviet(page, perPage)
+	const { data, dataCount, error } = await getPostsSoviet(perPage, page)
 
 	const totalPages = Math.ceil(dataCount / perPage)
 
@@ -31,7 +32,6 @@ const Council = async ({ searchParams }) => {
 			pageNumbers.push(i)
 		}
 	}
-
 
 	const breadcrumbs = [
 		{
@@ -49,11 +49,18 @@ const Council = async ({ searchParams }) => {
 
 	return (
 		<main>
-			<h1 className='visually-hidden'>Преподавательский состав университета МГУ</h1>
+			<h1 className='visually-hidden'>Студенческий совет университета ТФ МГУ</h1>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
 			<section className='personCardData'>
 				{data.map((item) => (
-					<PersonCard key={item._id} data={item} />
+					<div className='personCardMain' key={item._id}>
+						<PersonCard data={item} />
+						<div className='container'>
+							<div className='button-box'>
+								<ChangeButton text='Изменить' href={`/for-admin/council-change/${item._id}`} />
+							</div>
+						</div>
+					</div>
 				))}
 				<div className='container'>
 					<div className='container-section'>

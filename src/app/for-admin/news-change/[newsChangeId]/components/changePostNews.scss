@@ -7,12 +7,14 @@ form {
 		margin-bottom: var(--margin-base);
 	}
 	@include mixins.center;
-	.preview-box {
+	.preview-box.second {
 		width: fit-content;
 		overflow: hidden;
 		background: var(--color-gradient);
 		border-radius: var(--border-radius);
 		cursor: pointer;
+		min-width: 360px;
+		min-height: 240px;
 
 
 		@include mixins.center;

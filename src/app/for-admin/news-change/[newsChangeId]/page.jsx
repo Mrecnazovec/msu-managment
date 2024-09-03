@@ -2,11 +2,14 @@ import { getPostsNewsSolo } from '@/app/_actions/postActions'
 import ChangePostNews from './components/ChangePostNews'
 import './page.scss'
 import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
+import NotFound from '@/app/not-found'
 
 const changeNew = async ({ params }) => {
 	const id = params.newsChangeId
 
 	const { data, error } = await getPostsNewsSolo(id)
+
+	if (!data) return <NotFound />
 
 	const breadcrumbs = [
 		{

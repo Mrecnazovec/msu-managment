@@ -6,7 +6,7 @@ form {
 		align-self:flex-start;
 	}
 	@include mixins.center;
-	.preview-box {
+	.preview-box.second {
 		width: fit-content;
 		overflow: hidden;
 		background: var(--color-gradient);

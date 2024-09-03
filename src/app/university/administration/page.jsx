@@ -3,6 +3,7 @@ import { getPostsAdministration } from '@/app/_actions/postActions'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
 import Link from 'next/link'
+import ChangeButton from '@/app/ui/ChangeButton'
 
 export const revalidate = 10
 
@@ -52,7 +53,14 @@ const Administration = async ({ searchParams }) => {
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
 			<section className='personCardData'>
 				{data.map((item) => (
-					<PersonCard key={item._id} data={item} />
+					<div className='personCardMain' key={item._id}>
+						<PersonCard data={item} />
+						<div className='container'>
+							<div className='button-box'>
+								<ChangeButton text='Изменить' href={`/for-admin/administration-change/${item._id}`} />
+							</div>
+						</div>
+					</div>
 				))}
 				<div className='container'>
 					<div className='container-section'>

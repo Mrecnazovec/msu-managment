@@ -141,7 +141,7 @@ const ForAdmin = () => {
 								</article>
 								<p>Новости</p>
 							</Link>
-							<Link href='/university/administration'>
+							<Link href='/for-admin/administration-change'>
 								<article className='forAdmin-card'>
 									<svg fill='none' height='200' width='200' viewBox='0 0 512 512'>
 										<g>
@@ -181,7 +181,7 @@ const ForAdmin = () => {
 								</article>
 								<p>Руководство</p>
 							</Link>
-							<Link href='/university/teachers'>
+							<Link href='/for-admin/teachers-change'>
 								<article className='forAdmin-card'>
 									<svg fill='none' width='200' height='200' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'>
 										<path
@@ -192,7 +192,7 @@ const ForAdmin = () => {
 								</article>
 								<p>Преподаватели</p>
 							</Link>
-							<Link href='/university/student-council'>
+							<Link href='/for-admin/council-change'>
 								<article className='forAdmin-card'>
 									<svg fill='none' height='200px' width='200px' viewBox='0 0 353.749 353.749'>
 										<path
@@ -244,7 +244,7 @@ const ForAdmin = () => {
 								</article>
 								<p>Студ. совет</p>
 							</Link>
-							<Link href='/for-students/mentors'>
+							<Link href='/for-admin/mentors-change'>
 								<article className='forAdmin-card'>
 									<svg version='1.1' width='200' height='200' viewBox='0 0 511.993 511.993'>
 										<g>

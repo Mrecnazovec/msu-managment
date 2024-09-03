@@ -114,7 +114,7 @@ const ChangePostNews = ({ data }) => {
 			</button>
 			<label className='img-label'>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />
-				<div className='preview-box'>
+				<div className='preview-box second'>
 					{imgPath ? (
 						<Image alt='' width={360} height={240} className='preview' src={imgPath} />
 					) : (

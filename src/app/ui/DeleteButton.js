@@ -5,7 +5,7 @@ import './AllButton.scss'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-const DeleteButton = ({id}) => {
+const DeleteButton = ({id, action}) => {
 	const { data: session, status } = useSession()
 	const info = session?.user?.name
 
@@ -21,7 +21,7 @@ const DeleteButton = ({id}) => {
 	const deleteNews = async() => {
 		const props = new FormData()
 		props.set('id', id)
-		props.set('action', 'deletePost')
+		props.set('action', action)
 
 		try {
 			

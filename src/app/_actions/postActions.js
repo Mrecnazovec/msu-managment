@@ -111,11 +111,74 @@ export async function getPostsAdministration(perPage, page) {
 	}
 }
 
+export async function deletePostsAdministration(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsAdministration.deleteOne({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsAdministrationSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsAdministration.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updateAdministration(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsAdministration.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					name: object.name,
+					about: object.about,
+					modificator: object.modificator,
+					href: object.href,
+					link: object.link,
+					span: object.span,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+export async function createAdministration(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsAdministration.insertMany({
+			imgPath: object.path,
+			name: object.name,
+			about: object.about,
+			modificator: object.modificator,
+			href: object.href,
+			link: object.link,
+			span: object.span,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
 // FIXME: getPostsAdministration
 
 // FIXME: getPostsTeacher
 
-export async function getPostsTeacher(page, perPage) {
+export async function getPostsTeacher(perPage, page) {
 	try {
 		await connectDB()
 		const data = JSON.parse(
@@ -133,11 +196,75 @@ export async function getPostsTeacher(page, perPage) {
 	}
 }
 
+export async function deletePostsTeachers(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsTeacher.deleteOne({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+
+export async function getPostsTeachersSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsTeacher.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updatePostsTeachers(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsTeacher.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					name: object.name,
+					about: object.about,
+					modificator: object.modificator,
+					href: object.href,
+					link: object.link,
+					span: object.span,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function createPostsTeachers(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsTeacher.insertMany({
+			imgPath: object.path,
+			name: object.name,
+			about: object.about,
+			modificator: object.modificator,
+			href: object.href,
+			link: object.link,
+			span: object.span,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
 // FIXME: getPostsTeacher
 
 // FIXME: getPostsSoviet
 
-export async function getPostsSoviet(page, perPage) {
+export async function getPostsSoviet(perPage, page) {
 	try {
 		await connectDB()
 		const data = JSON.parse(
@@ -155,18 +282,149 @@ export async function getPostsSoviet(page, perPage) {
 	}
 }
 
-// FIXME: getPostsSoviet
-
-// FIXME: getPostsMentors
-
-export async function getPostsMentors() {
+export async function deletePostsSoviet(id) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsMentors.find()))
+		const data = JSON.parse(JSON.stringify(await PostModelsSoviet.deleteOne({ _id: id })))
 
 		return { data }
 	} catch (error) {
 		return error
+	}
+}
+export async function getPostsSovietSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsSoviet.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updatePostsSoviet(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsSoviet.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					name: object.name,
+					about: object.about,
+					modificator: object.modificator,
+					href: object.href,
+					link: object.link,
+					span: object.span,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function createPostsSoviet(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsSoviet.insertMany({
+			imgPath: object.path,
+			name: object.name,
+			about: object.about,
+			modificator: object.modificator,
+			href: object.href,
+			link: object.link,
+			span: object.span,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+// FIXME: getPostsSoviet
+
+// FIXME: getPostsMentors
+
+export async function getPostsMentors(perPage, page) {
+	try {
+		await connectDB()
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsMentors.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsMentors.countDocuments({})))
+
+		return { data, dataCount }
+	} catch (error) {
+		return error
+	}
+}
+export async function deletePostsMentors(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsMentors.deleteOne({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function getPostsMentorsSolo(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsMentors.find({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updatePostsMentors(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsMentors.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					name: object.name,
+					about: object.about,
+					modificator: object.modificator,
+					href: object.href,
+					link: object.link,
+					span: object.span,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+export async function createPostsMentors(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsMentors.insertMany({
+			imgPath: object.path,
+			name: object.name,
+			about: object.about,
+			modificator: object.modificator,
+			href: object.href,
+			link: object.link,
+			span: object.span,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
 	}
 }
 

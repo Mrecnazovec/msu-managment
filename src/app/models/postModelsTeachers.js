@@ -14,7 +14,7 @@ const newShema = new Schema(
 			type: String,
 			required: true,
 		},
-		modificators: {
+		modificator: {
 			type: String,
 			required: false,
 		},

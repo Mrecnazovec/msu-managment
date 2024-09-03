@@ -3,6 +3,7 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import PersonCard from '@/app/components/personCard/PersonCard'
 import './page.scss'
 import Link from 'next/link'
+import ChangeButton from '@/app/ui/ChangeButton'
 
 export const revalidate = 10
 
@@ -11,12 +12,12 @@ export const metadata = {
 	description: 'Страница "Преподаватели" сайта Менеджмента ТФ МГУ',
 }
 
-const Teachers = async ({searchParams}) => {
+const Teachers = async ({ searchParams }) => {
 	let page = parseInt(searchParams.page, 10)
 	page = !page || page < 1 ? 1 : page
 	const perPage = 10
 
-	const { data, dataCount, error } = await getPostsTeacher(page, perPage)
+	const { data, dataCount, error } = await getPostsTeacher(perPage, page)
 
 	const totalPages = Math.ceil(dataCount / perPage)
 
@@ -52,9 +53,16 @@ const Teachers = async ({searchParams}) => {
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
 			<section className='personCardData'>
 				{data.map((item) => (
-					<PersonCard key={item._id} data={item} />
+					<div className='personCardMain' key={item._id}>
+						<PersonCard data={item} />
+						<div className='container'>
+							<div className='button-box'>
+								<ChangeButton text='Изменить' href={`/for-admin/teachers-change/${item._id}`} />
+							</div>
+						</div>
+					</div>
 				))}
-								<div className='container'>
+				<div className='container'>
 					<div className='container-section'>
 						<div className={totalPages === 1 ? 'navigation-panel none' : 'navigation-panel'}>
 							{page === 1 ? (

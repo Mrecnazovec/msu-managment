@@ -1,4 +1,4 @@
-import { deletePostsNews } from '@/app/_actions/postActions'
+import { deletePostsAdministration, deletePostsMentors, deletePostsNews, deletePostsSoviet, deletePostsTeachers } from '@/app/_actions/postActions'
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(request) {
@@ -9,8 +9,23 @@ export async function DELETE(request) {
 
 	console.log(id);
 
-	if (action === 'deletePost') {
+	if (action === 'deleteNews') {
     result = await deletePostsNews(id);
+	}
+	if (action === 'deleteAdministration') {
+    result = await deletePostsAdministration(id);
+	}
+	if (action === 'deleteTeachers') {
+    result = await deletePostsTeachers(id);
+
+	}
+	if (action === 'deleteCouncil') {
+    result = await deletePostsSoviet(id);
+
+	}
+	if (action === 'deleteMentors') {
+    result = await deletePostsMentors(id);
+
 	}
 
 	return NextResponse.json({ success: true });

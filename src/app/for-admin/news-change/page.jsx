@@ -56,7 +56,7 @@ const newsChange = async ({ searchParams }) => {
 									<Link href={`/news/${item._id}`}>{item.title}</Link>
 									<div className='btn-box'>
 										<ChangeButton text='Изменить' href={`/for-admin/news-change/${item._id}`} />
-										<DeleteButton id={item._id} />
+										<DeleteButton id={item._id} action='deleteNews' />
 									</div>
 								</div>
 							))}
@@ -64,7 +64,7 @@ const newsChange = async ({ searchParams }) => {
 						{isPageOutOfRange ? (
 							<div className='errorPage'>
 								<p className='h3'>Несуществующая страница</p>
-								<Link href='?page=1'>Перейти ко всем новостям</Link>
+								<Link href='?page=1'>Перейти к первой</Link>
 							</div>
 						) : (
 							<div className={totalPages === 1 ? 'navigation-panel none' : 'navigation-panel'}>

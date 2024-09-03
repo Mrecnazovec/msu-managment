@@ -9,7 +9,7 @@
 		width: 360px;
 		@include mixins.center;
 		@include media.mobile-s {
-			width: 100%;
+			width: 90%;
 		}
 
 		form {
