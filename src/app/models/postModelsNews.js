@@ -4,14 +4,14 @@ const newShema = new Schema(
 	{
 		imgPath: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		title: {
 			type: String,
 			required: true,
 		},
-		text: {
-			type: String,
+		description: {
+			type: Array,
 			required: true,
 		},
 	},

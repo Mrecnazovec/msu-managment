@@ -5,15 +5,28 @@
 	&-section {
 		padding-block: var(--section-padding-y);
 
-		h1 {
-			margin: 0;
+		.changeTitle {
 			margin-bottom: var(--margin-base);
+
+			.button {
+				display: block;
+				width: fit-content;
+			}
+
+			h1 {
+				margin: 0;
+			}
 		}
 		.news-item {
 			margin-bottom: var(--margin-base);
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
+			@include media.mobile {
+				flex-direction: column;
+				gap: var(--margin-base);
+			}
 
 			a {
 				color: var(--color-red);

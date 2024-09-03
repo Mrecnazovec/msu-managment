@@ -16,7 +16,14 @@ import PostModelsMentors from '../models/PostModelsMentors'
 export async function getPostsNews(perPage, page) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelNews.find().sort({ _id: -1 }).skip(perPage*(page-1)).limit(perPage)))
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelNews.find()
+					.sort({ _id: -1 })
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
 		const dataCount = JSON.parse(JSON.stringify(await PostModelNews.countDocuments({})))
 
 		return { data, dataCount }
@@ -39,7 +46,7 @@ export async function getPostsNewsSolo(id) {
 export async function deletePostsNews(id) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelNews.deleteOne({_id: id})))
+		const data = JSON.parse(JSON.stringify(await PostModelNews.deleteOne({ _id: id })))
 
 		return { data }
 	} catch (error) {
@@ -47,16 +54,58 @@ export async function deletePostsNews(id) {
 	}
 }
 
+export async function updatePostsNews(object) {
+	try {
+		await connectDB()
+		const update = await PostModelNews.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					title: object.title,
+					description: object.description,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function createPostsNews(object) {
+	try {
+		await connectDB()
+		const update = await PostModelNews.insertMany({
+			imgPath: object.path,
+			title: object.title,
+			description: object.description,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
 // FIXME: GetPostsNews
 
 // FIXME: getPostsAdministration
 
-export async function getPostsAdministration() {
+export async function getPostsAdministration(perPage, page) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsAdministration.find()))
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsAdministration.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsAdministration.countDocuments({})))
 
-		return { data }
+		return { data, dataCount }
 	} catch (error) {
 		return error
 	}
@@ -66,12 +115,19 @@ export async function getPostsAdministration() {
 
 // FIXME: getPostsTeacher
 
-export async function getPostsTeacher() {
+export async function getPostsTeacher(page, perPage) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsTeacher.find()))
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsTeacher.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsTeacher.countDocuments({})))
 
-		return { data }
+		return { data, dataCount }
 	} catch (error) {
 		return error
 	}
@@ -81,12 +137,19 @@ export async function getPostsTeacher() {
 
 // FIXME: getPostsSoviet
 
-export async function getPostsSoviet() {
+export async function getPostsSoviet(page, perPage) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsSoviet.find()))
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsSoviet.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsSoviet.countDocuments({})))
 
-		return { data }
+		return { data, dataCount }
 	} catch (error) {
 		return error
 	}
@@ -154,8 +217,8 @@ export async function getPostsPlans() {
 export async function getPostsForAdmin(login) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login})))
-		
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({ login })))
+
 		return { data }
 	} catch (error) {
 		return error
@@ -165,8 +228,8 @@ export async function getPostsForAdmin(login) {
 export async function getPostsForAdminSolo(id) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({_id: id})))
-		
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({ _id: id })))
+
 		return { data }
 	} catch (error) {
 		return error
@@ -174,9 +237,8 @@ export async function getPostsForAdminSolo(id) {
 }
 
 export async function updatePostsForAdmin(object) {
-
 	try {
-		await connectDB();
+		await connectDB()
 		const update = await PostModelsForAdmin.updateOne(
 			{ _id: object.userId },
 			{
@@ -185,13 +247,13 @@ export async function updatePostsForAdmin(object) {
 					fullName: object.fullName,
 					login: object.login,
 					password: object.password,
-				}
+				},
 			}
-		);
-		
-		return { success: update.nModified > 0 };
+		)
+
+		return { success: update.nModified > 0 }
 	} catch (error) {
-		return { error: error.message };
+		return { error: error.message }
 	}
 }
 

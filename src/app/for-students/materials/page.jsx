@@ -3,7 +3,7 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import NavigationItem from '@/app/components/navigationCards/NavigationItem'
 import './page.scss'
 
-export const revalidate = 60
+export const revalidate = 10
 
 export const metadata = {
 	title: 'Материалы',

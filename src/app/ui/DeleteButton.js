@@ -38,11 +38,11 @@ const DeleteButton = ({id}) => {
 
 	return (
 		<>
-			<button onClick={()=>setConfirm(true)} className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'} ${confirm ? 'none' : 'active'}`}>Удалить новость</button>
+			<button onClick={()=>setConfirm(true)} className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'} ${confirm ? 'none' : 'active'}`}>Удалить</button>
 
 			<button onClick={deleteNews} className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'} ${confirm ? 'active' : 'none'} ${isConfirmed ? 'none' : ''}`}>Вы уверены?</button>
 
-			<button onClick={confirmed} className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'} ${confirm ? 'active' : 'none'} ${isConfirmed ? '' : 'none'}`}>Перезагрузить страницу</button>
+			<button onClick={confirmed} className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'} ${confirm ? 'active' : 'none'} ${isConfirmed ? '' : 'none'}`}>Перезагрузить</button>
 
 		</>
 	)

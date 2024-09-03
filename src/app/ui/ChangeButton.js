@@ -11,7 +11,7 @@ const ChangeButton = ({ text, href }) => {
 	const info = session?.user?.name
 
 	return (
-		<Link className={`newsShow ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'}`} href={href}>
+		<Link className={`button ${status === 'authenticated' && info.roleLevel >= 2 ? '' : 'none'}`} href={href}>
 			<span>{text}</span>
 		</Link>
 	)

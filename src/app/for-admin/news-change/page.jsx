@@ -1,18 +1,16 @@
-
 import { getPostsNews } from '@/app/_actions/postActions'
 import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
-import Link from 'next/link'
-import './page.scss'
 import ChangeButton from '@/app/ui/ChangeButton'
 import DeleteButton from '@/app/ui/DeleteButton'
+import Link from 'next/link'
+import './page.scss'
 
 const newsChange = async ({ searchParams }) => {
 	let page = parseInt(searchParams.page, 10)
 	page = !page || page < 1 ? 1 : page
-	const perPage = 18
+	const perPage = 10
 
 	const { data, dataCount, error } = await getPostsNews(perPage, page)
-
 
 	const totalPages = Math.ceil(dataCount / perPage)
 
@@ -42,21 +40,23 @@ const newsChange = async ({ searchParams }) => {
 		},
 	]
 
-
 	return (
 		<main className='newsChange'>
 			<Breadcrumbs breadcrumbs={breadcrumbs} />
 			<section className='newsChange-section'>
 				<div className='container'>
 					<div className='container-section'>
-						<h1>Изменение новостей</h1>
-						<div className='news-content'>
+						<div className='changeTitle'>
+							<h1>Изменение новостей</h1>
+							<ChangeButton text='Добавить новость' href={`/for-admin/news-change/yangi`} />
+						</div>
+						<div className='newsContent'>
 							{data.map((item) => (
 								<div key={item._id} className='news-item'>
 									<Link href={`/news/${item._id}`}>{item.title}</Link>
-									<div className="btn-box">
-										<ChangeButton text='Изменить новость' href={`/for-admin/news-change/${item._id}`}/>
-										<DeleteButton id={item._id}/>
+									<div className='btn-box'>
+										<ChangeButton text='Изменить' href={`/for-admin/news-change/${item._id}`} />
+										<DeleteButton id={item._id} />
 									</div>
 								</div>
 							))}

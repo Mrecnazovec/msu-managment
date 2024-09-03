@@ -26,12 +26,10 @@
 
 				@include media.mobile {
 					width: 70%;
-					aspect-ratio: 1.75;
 					align-self: center;
 				}
 				@include media.mobile-s {
 					width: 90%;
-					aspect-ratio: 1.75;
 					align-self: center;
 				}
 

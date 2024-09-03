@@ -4,9 +4,9 @@ import { join } from "path";
 
 
 export async function POST(request) {
-  const data = await request.formData();
-  const file = data.get("file");
-  const folder = data.get("folder");
+  const formData = await request.formData();
+  const file = formData.get("file");
+  const folder = formData.get("folder");
 
 
   if (!file) {

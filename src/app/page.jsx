@@ -3,7 +3,7 @@ import Navigation from './components/navigationCards/Navigation'
 import News from './components/news/News'
 import styles from './page.scss'
 
-export const revalidate = 60
+export const revalidate = 10
 
 export const metadata = {
 	title: 'Факультет Менеджмент ТФ МГУ имени М.В.Ломоносова',

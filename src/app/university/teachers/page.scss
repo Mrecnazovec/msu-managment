@@ -8,4 +8,39 @@
 
 		}
 	}
+	
+	.navigation-panel {
+		padding-block: var(--section-padding-y);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&.none {
+			display: none;
+		}
+
+		.numbers-panel {
+			display: flex;
+			gap: calc(var(--margin-base) / 2);
+
+			a {
+				&.active {
+					color: var(--color-red);
+				}
+			}
+		}
+
+		.news-navigation {
+			font-family: 'Moscow University';
+			padding: 6px 20px;
+			background: var(--color-gradient);
+			color: var(--color-gold);
+			border-radius: var(--border-radius-small);
+			font-size: 16px;
+
+			&.disabled {
+				opacity: 0.6;
+			}
+		}
+	}
 }

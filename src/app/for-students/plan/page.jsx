@@ -4,7 +4,7 @@ import { getPostsPlans } from '@/app/_actions/postActions'
 import PlanItem from './components/PlanItem'
 import LinkDownloadPlan from './components/LinkDownloadPlan'
 
-export const revalidate = 60
+export const revalidate = 10
 
 export const metadata = {
 	title: 'Уч. план',

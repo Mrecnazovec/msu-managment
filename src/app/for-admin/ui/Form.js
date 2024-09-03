@@ -63,9 +63,9 @@ const Form = ({ param }) => {
 
 	const handleSubmitTwo = async (e) => {
 		e.preventDefault()
-		const data = new FormData()
-		data.set('file', selectedFile)
-		data.set('folder', 'avatar')
+		const formData = new FormData()
+		formData.set('file', selectedFile)
+		formData.set('folder', 'avatar')
 
 		try {
 			if (fullName == param[0].content && login == param[1].content && password == param[2].content && !selectedFile && imgPath == param[3].imgPath) {
@@ -75,7 +75,7 @@ const Form = ({ param }) => {
 
 			const response = await fetch('/api/upload', {
 				method: 'POST',
-				body: data,
+				body: formData,
 			})
 
 			const result = selectedFile ? await response.json() : ''
