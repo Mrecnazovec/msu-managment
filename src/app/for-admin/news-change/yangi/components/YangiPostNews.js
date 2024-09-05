@@ -144,9 +144,11 @@ const YangiPostNews = () => {
 							<button className='addDesc' type='button' onClick={() => handleDescriptionChange(index + 1, '')}>
 								Добавить абзац
 							</button>
-							<button className='addDesc' type='button' onClick={() => removeDescriptionItem(index)}>
-								Удалить абзац
-							</button>
+							{description.length !== 1 && (
+								<button className='addDesc' type='button' onClick={() => removeDescriptionItem(index)}>
+									Удалить абзац
+								</button>
+							)}
 						</div>
 					)}
 				</div>

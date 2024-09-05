@@ -1,13 +1,12 @@
 'use client'
 
-import './page.scss'
-import { signOut } from 'next-auth/react'
-import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
-import Loading from '../loading'
-import Link from 'next/link'
+import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs'
+import Loading from '../loading'
+import './page.scss'
 
 const ForAdmin = () => {
 	const { data: session, status } = useSession()
@@ -41,7 +40,7 @@ const ForAdmin = () => {
 						<div className='office'>
 							<div className={`office-img-box ${info?.modificator}`}>
 								{info?.imgPath ? (
-									<Image width={360} height={240} className='office-avatar' src={info?.imgPath} />
+									<Image alt='' priority width={360} height={240} className='office-avatar' src={info?.imgPath} />
 								) : info?.gender === 'male' ? (
 									<svg width='150' height='150' viewBox='0 0 150 150' fill='none' xmlns='http://www.w3.org/2000/svg'>
 										<g clipPath='url(#clip0_244_175)'>
@@ -269,7 +268,7 @@ const ForAdmin = () => {
 								</article>
 								<p>Менторы</p>
 							</Link>
-							<Link href='/for-students/materials'>
+							<Link href='/for-admin/materials-change'>
 								<article className='forAdmin-card'>
 									<svg width='200' height='200' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
 										<path

@@ -459,6 +459,56 @@ export async function getPostsSubjectsSolo(id) {
 		return error
 	}
 }
+export async function deletePostsSubjects(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsSubject.deleteOne({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updatePostsSubjects(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsSubject.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					title: object.title,
+					description: object.description,
+					name: object.name,
+					teacherInfo: object.teacherInfo,
+					downloadPath: object.downloadPath,
+				},
+			}
+		)
+
+		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function createPostsSubjects(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsSubject.insertMany({
+			imgPath: object.path,
+			title: object.title,
+			description: object.description,
+			name: object.name,
+			teacherInfo: object.teacherInfo,
+			downloadPath: object.downloadPath,
+		})
+
+		return { success: update.acknowledged }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
 
 // FIXME: getPostsSubjects
 

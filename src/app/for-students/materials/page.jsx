@@ -3,6 +3,7 @@ import Breadcrumbs from '@/app/components/breadcrumbs/Breadcrumbs'
 import NavigationItem from '@/app/components/navigationCards/NavigationItem'
 import Link from 'next/link'
 import './page.scss'
+import ChangeButton from '@/app/ui/ChangeButton'
 
 export const revalidate = 10
 
@@ -52,6 +53,10 @@ const Materials = async ({ searchParams }) => {
 			<section className='materials-section'>
 				<div className='container'>
 					<div className='container-section'>
+						<div className='materialsButtonChange'>
+							<ChangeButton text='Изменить' href='/for-admin/materials-change' />
+						</div>
+
 						<div className='materials-container'>
 							{data.map((item) => (
 								<NavigationItem
