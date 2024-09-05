@@ -3,7 +3,7 @@
 
 .auth {
 	@include mixins.center;
-	padding-block: calc(var(--section-padding-y)*2);
+	padding-block: calc(var(--section-padding-y) * 2);
 
 	.form {
 		width: 360px;
@@ -46,8 +46,7 @@
 
 			@include media.hover {
 				background-color: transparent;
-			color: var(--color-red);
-
+				color: var(--color-red);
 			}
 		}
 		.errorMessage {

@@ -58,7 +58,7 @@ const Header = () => {
 				{info ? (
 					<Link className='for-admin' href='/for-admin'>
 						{info?.imgPath ? (
-							<Image width={360} height={240} className='office-avatar' src={info?.imgPath} />
+							<Image alt='' width={360} height={240} className='office-avatar' src={info?.imgPath} />
 						) : info?.gender === 'male' ? (
 							<svg width='150' height='150' viewBox='0 0 150 150' fill='none' xmlns='http://www.w3.org/2000/svg'>
 								<g clipPath='url(#clip0_244_175)'>

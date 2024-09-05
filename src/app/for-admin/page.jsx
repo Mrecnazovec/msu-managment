@@ -39,7 +39,7 @@ const ForAdmin = () => {
 				<div className='container'>
 					<div className='container-section'>
 						<div className='office'>
-							<div className='office-img-box'>
+							<div className={`office-img-box ${info?.modificator}`}>
 								{info?.imgPath ? (
 									<Image width={360} height={240} className='office-avatar' src={info?.imgPath} />
 								) : info?.gender === 'male' ? (

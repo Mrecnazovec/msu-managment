@@ -432,12 +432,19 @@ export async function createPostsMentors(object) {
 
 // FIXME: getPostsSubjects
 
-export async function getPostsSubjects() {
+export async function getPostsSubjects(perPage, page) {
 	try {
 		await connectDB()
-		const data = JSON.parse(JSON.stringify(await PostModelsSubject.find()))
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsSubject.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsSubject.countDocuments({})))
 
-		return { data }
+		return { data, dataCount }
 	} catch (error) {
 		return error
 	}
@@ -505,6 +512,7 @@ export async function updatePostsForAdmin(object) {
 					fullName: object.fullName,
 					login: object.login,
 					password: object.password,
+					modificator: object.modificator,
 				},
 			}
 		)

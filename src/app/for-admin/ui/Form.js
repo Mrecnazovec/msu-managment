@@ -1,14 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import './form.scss'
-import { redirect, useRouter } from 'next/navigation'
-import { signOut } from 'next-auth/react'
 import { updatePostsForAdmin } from '@/app/_actions/postActions'
-import { useSession } from 'next-auth/react'
 import Loading from '@/app/loading'
+import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import './form.scss'
 
 const Form = ({ param }) => {
 	const { data: session, status } = useSession()
@@ -19,6 +18,7 @@ const Form = ({ param }) => {
 	const [login, setLogin] = useState(param[1].content)
 	const [password, setPassword] = useState(param[2].content)
 	const [userId, setUserId] = useState(param[3].id)
+	const [modificator, setModificator] = useState(param[3].modificator)
 	const [error, setError] = useState('')
 	const [passwordState, setPasswordState] = useState({ type: 'password', text: 'Показать пароль' })
 	const [imgPath, setImgPath] = useState(param[3].imgPath)
@@ -47,7 +47,7 @@ const Form = ({ param }) => {
 	}
 
 	const info = session?.user?.name
-	if ( status === 'authenticated' && info?._id !== param[3].id) {
+	if (status === 'authenticated' && info?._id !== param[3].id) {
 		router.replace('/for-admin')
 	}
 
@@ -68,7 +68,7 @@ const Form = ({ param }) => {
 		formData.set('folder', 'avatar')
 
 		try {
-			if (fullName == param[0].content && login == param[1].content && password == param[2].content && !selectedFile && imgPath == param[3].imgPath) {
+			if (fullName == param[0].content && login == param[1].content && password == param[2].content && !selectedFile && imgPath == param[3].imgPath && modificator == param[3].modificator) {
 				setError('Данные не изменились')
 				return
 			}
@@ -82,7 +82,7 @@ const Form = ({ param }) => {
 
 			const path = !result ? imgPath : result.path.replace(/\\/g, '/')
 
-			const object = { userId, fullName, login, password, path }
+			const object = { userId, fullName, login, password, modificator, path }
 			console.log(object)
 
 			const res = await updatePostsForAdmin(object)
@@ -115,11 +115,19 @@ const Form = ({ param }) => {
 		setImgPath('')
 	}
 
+	const modificatorChange = () => {
+		if (modificator === '') {
+			setModificator('card--big')
+		} else {
+			setModificator('')
+		}
+	}
+
 	return (
-		<form onSubmit={handleSubmitTwo} encType='multipart/form-data' className='form'>
+		<form onSubmit={handleSubmitTwo} encType='multipart/form-data' className='form form-other'>
 			<label>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />
-				<div className='avatar-box'>
+				<div className={`avatar-box ${modificator}`}>
 					{imgPath ? (
 						<Image alt='' width={360} height={240} className='office-avatar' src={imgPath} />
 					) : param[3].gender === 'male' ? (
@@ -209,11 +217,28 @@ const Form = ({ param }) => {
 				{param[2].title}
 				<input type={passwordState.type} value={password} onChange={(e) => setPassword(e.target.value)} />
 			</label>
+			<label>
+				Широкое фото
+				<div onClick={modificatorChange} className={`check-box ${modificator === '' ? '' : 'checked'}`}>
+					<div className='check-svg'>
+						<svg version='1.1' viewBox='0 0 548.873 548.873' width='30' height='30'>
+							<g>
+								<g>
+									<polygon
+										points='449.34,47.966 195.46,301.845 99.533,205.917 0,305.449 95.928,401.378 195.46,500.907 294.99,401.378 548.873,147.496 '
+										fill='#000'
+									></polygon>
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</label>
 			<button onClick={onClick} className='showPassword' type='button'>
 				{passwordState.text}
 			</button>
 			{error && <div className='errorMessage'>{error}</div>}
-			<button type='submit'>Принять изменения</button>
+			<button className='confirmButton' type='submit'>Принять изменения</button>
 			{isReady && (
 				<Link className='ready' href='/for-admin/auth' onClick={signOut}>
 					Чтобы изменения вступили в силу, требуется перезайти в аккаунт

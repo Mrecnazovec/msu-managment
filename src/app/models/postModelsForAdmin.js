@@ -25,6 +25,10 @@ const newShema = new Schema(
 		imgPath: {
 			type: String,
 			required: true,
+		},
+		modificator: {
+			type: String,
+			request: false,
 		}
 	},
 	{ timestamps: true }

@@ -14,6 +14,7 @@ form {
 		cursor: pointer;
 		width: 360px;
 		height: 240px;
+		align-self: center;
 
 		@include mixins.center;
 

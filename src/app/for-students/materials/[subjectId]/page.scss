@@ -42,6 +42,14 @@
 			flex-direction: column;
 			row-gap: var(--margin-base);
 		}
-		
+		.downloadButton-box {
+			display: flex;
+			flex-direction: column;
+			row-gap: var(--margin-base);
+
+			button {
+				width: fit-content;
+			}
+		}
 	}
 }

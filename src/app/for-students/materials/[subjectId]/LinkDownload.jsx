@@ -3,21 +3,34 @@
 import { saveAs } from 'file-saver'
 
 const LinkDownload = ({ path, title }) => {
-	const handleDownloadRar = () => {
-		saveAs(`${path}.rar`, `${title}.rar`)
-	}
-	const handleDownloadZip = () => {
-		saveAs(`${path}.zip`, `${title}.zip`)
+	console.log(path)
+
+	const handleDownload = (path, fileName, format) => {
+		saveAs(`${path}`, `${fileName}.${format}`)
 	}
 
 	return (
 		<>
-			<button className='' onClick={handleDownloadRar}>
-				Скачать учебные материалы (формат rar)
-			</button>
-			<button className='' onClick={handleDownloadZip}>
-				Скачать учебные материалы (формат zip)
-			</button>
+			{path.map((item, index) => (
+				<div key={index}>
+					{console.log(item.folder)}
+					{item.folder.length === 1 && item.folder[0].path === '' && item.folder[0].fileName === '' ? (
+						''
+					) : (
+						<>
+							{' '}
+							<p>Скачать файлы {item.format}</p>
+							<div className='downloadButton-box'>
+								{item.folder.map((file, index) => (
+									<button key={index} onClick={() => handleDownload(file.path, file.fileName, item.format)}>
+										{file.fileName}
+									</button>
+								))}
+							</div>
+						</>
+					)}
+				</div>
+			))}
 		</>
 	)
 }
