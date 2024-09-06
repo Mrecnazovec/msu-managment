@@ -12,6 +12,7 @@ export default function SignIn() {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -19,6 +20,7 @@ export default function SignIn() {
 		e.preventDefault()
 
 		try {
+			setLoader(true)
 			const res = await signIn('credentials', {
 				login,
 				password,
@@ -27,11 +29,16 @@ export default function SignIn() {
 
 			if (res.error) {
 				setError('Неверный логин или пароль')
+				setLoader(false)
 				return
 			}
 
 			router.replace('/for-admin')
-		} catch (error) {}
+			setLoader(false)
+		} catch (error) {
+			setError(error.message)
+			setLoader(false)
+		}
 	}
 
 	if (status === 'loading') {
@@ -42,6 +49,8 @@ export default function SignIn() {
 		router.replace('/for-admin')
 		return null
 	}
+
+	if (loader) return <Loading />
 
 	return (
 		<main className='auth'>

@@ -6,6 +6,7 @@ import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createPostsMentors } from '@/app/_actions/postActions'
+import Loading from '@/app/loading'
 
 const YangiMentorsPosts = () => {
 	const [name, setName] = useState('')
@@ -20,6 +21,8 @@ const YangiMentorsPosts = () => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -68,6 +71,8 @@ const YangiMentorsPosts = () => {
 		formData.set('folder', 'mentors')
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -83,13 +88,19 @@ const YangiMentorsPosts = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+
 			setError('Человек добавлен')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -108,6 +119,9 @@ const YangiMentorsPosts = () => {
 			setModificator('')
 		}
 	}
+
+	if (loader) return <Loading />
+
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>

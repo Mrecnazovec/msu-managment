@@ -25,6 +25,7 @@ const Form = ({ param }) => {
 	const [selectedFile, setSelectedFile] = useState(null)
 	const [isReady, setIsReady] = useState(false)
 	const [imgChange, setImgChange] = useState('')
+	const [loader, setLoader] = useState(false)
 
 	useEffect(() => {
 		if (selectedFile) {
@@ -68,6 +69,8 @@ const Form = ({ param }) => {
 		formData.set('folder', 'avatar')
 
 		try {
+			setLoader(true)
+
 			if (
 				fullName == param[0].content &&
 				login == param[1].content &&
@@ -77,6 +80,8 @@ const Form = ({ param }) => {
 				modificator == param[3].modificator
 			) {
 				setError('Данные не изменились')
+				setLoader(false)
+
 				return
 			}
 
@@ -95,6 +100,8 @@ const Form = ({ param }) => {
 
 			if (login !== param[1].content && checkLogin.dataCount >= 1) {
 				setError('Логин занят')
+				setLoader(false)
+
 				return
 			}
 
@@ -104,21 +111,28 @@ const Form = ({ param }) => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			if (res.success) {
 				setError('Успешно изменено!')
 				setIsReady(true)
+				setLoader(false)
 			} else {
 				setError('Успешно изменено!')
 				setIsReady(true)
+				setLoader(false)
 			}
 		} catch (error) {
 			setError(error.message)
-			console.log(error)
+			setLoader(false)
+
 		}
 	}
+
+	if (loader) return <Loading />
 
 	const onClick = () => {
 		if (passwordState.type === 'password') {

@@ -6,6 +6,7 @@ import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createAdministration, createPostsSoviet } from '@/app/_actions/postActions'
+import Loading from '@/app/loading'
 
 const YangiCouncilPosts = () => {
 	const [name, setName] = useState('')
@@ -22,6 +23,8 @@ const YangiCouncilPosts = () => {
 	const [confirm, setConfirm] = useState(false)
 
 	const router = useRouter()
+
+	const [loader, setLoader] = useState(false)
 
 	useEffect(() => {
 		if (selectedFile) {
@@ -68,6 +71,8 @@ const YangiCouncilPosts = () => {
 		formData.set('folder', 'council')
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -83,13 +88,15 @@ const YangiCouncilPosts = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
 				return
 			}
-
 			setConfirm(true)
+			setLoader(false)
 			setError('Человек добавлен')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
 			console.log(error)
 		}
 	}
@@ -108,6 +115,9 @@ const YangiCouncilPosts = () => {
 			setModificator('')
 		}
 	}
+
+	if (loader) return <Loading />
+
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>

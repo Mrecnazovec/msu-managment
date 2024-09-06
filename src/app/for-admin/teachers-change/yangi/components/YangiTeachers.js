@@ -6,6 +6,7 @@ import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createPostsTeachers } from '@/app/_actions/postActions'
+import Loading from '@/app/loading'
 
 const YangiAdministration = () => {
 	const [name, setName] = useState('')
@@ -17,11 +18,12 @@ const YangiAdministration = () => {
 	const [span, setSpan] = useState('')
 	const [personId, setPersonId] = useState('')
 
-
 	const [selectedFile, setSelectedFile] = useState(null)
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -70,6 +72,8 @@ const YangiAdministration = () => {
 		formData.set('folder', 'teachers')
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -85,13 +89,19 @@ const YangiAdministration = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+
 			setError('Человек добавлен')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -110,6 +120,9 @@ const YangiAdministration = () => {
 			setModificator('')
 		}
 	}
+
+	if (loader) return <Loading />
+
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>

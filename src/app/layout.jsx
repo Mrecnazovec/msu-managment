@@ -5,6 +5,7 @@ import Marquee from './components/marquee/Marquee'
 import { AuthProvider } from './Providers'
 import './styles/styles.scss'
 
+
 export const metadata = {
 	title: 'Факультет Менеджмент ТФ МГУ имени М.В.Ломоносова',
 	authors: [{ name: 'Aleksandr A. Salnikov', url: 'https://t.me/AlexITdrom' }],
@@ -12,6 +13,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+	
 	return (
 		<html lang='en'>
 			<body>

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
+import Loading from '@/app/loading'
 
 const ChangePostNews = ({ data }) => {
 	const id = data[0]._id
@@ -16,6 +17,8 @@ const ChangePostNews = ({ data }) => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -68,8 +71,12 @@ const ChangePostNews = ({ data }) => {
 		formData.set('folder', 'news')
 
 		try {
+			setLoader(true)
+
 			if (title == data[0].title && imgPath == data[0].imgPath && !selectedFile && description == data[0].description) {
 				setError('Данные не изменились')
+				setLoader(false)
+
 				return
 			}
 
@@ -88,12 +95,18 @@ const ChangePostNews = ({ data }) => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+			setError('Успешно!')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -105,6 +118,8 @@ const ChangePostNews = ({ data }) => {
 	const toNew = () => {
 		router.replace(`/news/${id}`)
 	}
+
+	if (loader) return <Loading />
 
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>

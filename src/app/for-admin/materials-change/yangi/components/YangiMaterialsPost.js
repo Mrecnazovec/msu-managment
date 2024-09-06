@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
+import Loading from '@/app/loading'
 
 const YangiMaterialsPost = () => {
 	const [title, setTitle] = useState('')
@@ -29,10 +30,9 @@ const YangiMaterialsPost = () => {
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
 
-	const router = useRouter()
+	const [loader, setLoader] = useState(false)
 
-	console.log(downloadFile?.name.slice(0, downloadFile?.name.lastIndexOf('.')))
-	console.log(downloadPath)
+	const router = useRouter()
 
 	useEffect(() => {
 		if (selectedFile) {
@@ -139,6 +139,8 @@ const YangiMaterialsPost = () => {
 		fileData.set('folder', name)
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -179,6 +181,8 @@ const YangiMaterialsPost = () => {
 
 					default:
 						setError('Неподдерживаемый формат файла')
+						setLoader(false)
+
 						return
 				}
 
@@ -193,6 +197,8 @@ const YangiMaterialsPost = () => {
 
 			if (!imgPath) {
 				setError('Требуется добавить картинку')
+				setLoader(false)
+
 				return
 			}
 
@@ -200,12 +206,18 @@ const YangiMaterialsPost = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+			setError('Успешно!')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -217,6 +229,8 @@ const YangiMaterialsPost = () => {
 	const toNew = () => {
 		router.replace(`/for-students/materials`)
 	}
+
+	if (loader) return <Loading />
 
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>

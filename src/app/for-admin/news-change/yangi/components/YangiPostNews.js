@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
+import Loading from '@/app/loading'
 
 const YangiPostNews = () => {
 	const [title, setTitle] = useState('')
@@ -15,6 +16,8 @@ const YangiPostNews = () => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -67,6 +70,8 @@ const YangiPostNews = () => {
 		formData.set('folder', 'news')
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -84,13 +89,19 @@ const YangiPostNews = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+
 			setError('Новость добавлена')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -99,6 +110,8 @@ const YangiPostNews = () => {
 		router.replace('/news')
 		setConfirm(false)
 	}
+
+	if (loader) return <Loading />
 
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>

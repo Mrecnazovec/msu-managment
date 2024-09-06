@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
+import Loading from '@/app/loading'
 
 const ChangeMentorsPosts = ({ data }) => {
 	const id = data[0]._id
@@ -21,6 +22,8 @@ const ChangeMentorsPosts = ({ data }) => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -69,6 +72,8 @@ const ChangeMentorsPosts = ({ data }) => {
 		formData.set('folder', 'mentors')
 
 		try {
+			setLoader(true)
+
 			if (
 				name == data[0].name &&
 				imgPath == data[0].imgPath &&
@@ -80,6 +85,8 @@ const ChangeMentorsPosts = ({ data }) => {
 				span == data[0].span
 			) {
 				setError('Данные не изменились')
+				setLoader(false)
+
 				return
 			}
 
@@ -98,12 +105,18 @@ const ChangeMentorsPosts = ({ data }) => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+			setError('Успешно!')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -122,6 +135,9 @@ const ChangeMentorsPosts = ({ data }) => {
 			setModificator('')
 		}
 	}
+
+	if (loader) return <Loading />
+
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
+import Loading from '@/app/loading'
 
 const ChangeMaterialsPost = ({ data }) => {
 	const id = data[0]._id
@@ -22,6 +23,8 @@ const ChangeMaterialsPost = ({ data }) => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -130,6 +133,8 @@ const ChangeMaterialsPost = ({ data }) => {
 		fileData.set('folder', name)
 
 		try {
+			setLoader(true)
+
 			if (
 				title == data[0].title &&
 				imgPath == data[0].imgPath &&
@@ -141,6 +146,8 @@ const ChangeMaterialsPost = ({ data }) => {
 				teacherInfo == data[0].teacherInfo
 			) {
 				setError('Данные не изменились')
+				setLoader(false)
+
 				return
 			}
 
@@ -184,6 +191,8 @@ const ChangeMaterialsPost = ({ data }) => {
 
 					default:
 						setError('Неподдерживаемый формат файла')
+						setLoader(false)
+
 						return
 				}
 
@@ -198,6 +207,8 @@ const ChangeMaterialsPost = ({ data }) => {
 
 			if (!imgPath) {
 				setError('Требуется добавить картинку')
+				setLoader(false)
+
 				return
 			}
 
@@ -205,12 +216,18 @@ const ChangeMaterialsPost = ({ data }) => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+			setError('Успешно!')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -222,6 +239,8 @@ const ChangeMaterialsPost = ({ data }) => {
 	const toNew = () => {
 		router.replace(`/for-students/materials/${name}`)
 	}
+
+	if (loader) return <Loading />
 
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
@@ -305,9 +324,7 @@ const ChangeMaterialsPost = ({ data }) => {
 							</div>
 						</div>
 						{item.isLink && (
-							<p className='errorMessage not-clickable'>{`Проверьте чтобы у учителя был указан ID "${name}${
-								index !== 1 ? '' : `-${index + 1}`
-							}"`}</p>
+							<p className='errorMessage not-clickable'>{`Проверьте чтобы у учителя был указан ID "${name}${index !== 1 ? '' : `-${index + 1}`}"`}</p>
 						)}
 					</label>
 					{index + 1 === teacherInfo.length && (

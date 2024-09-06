@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
+import Loading from '@/app/loading'
 
 const YangiAdminPosts = () => {
 	const [fullName, setFullName] = useState('')
@@ -22,6 +23,8 @@ const YangiAdminPosts = () => {
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
+
+	const [loader, setLoader] = useState(false)
 
 	const router = useRouter()
 
@@ -62,6 +65,8 @@ const YangiAdminPosts = () => {
 		formData.set('folder', 'avatar')
 
 		try {
+			setLoader(true)
+
 			const response = await fetch('/api/upload', {
 				method: 'POST',
 				body: formData,
@@ -77,6 +82,8 @@ const YangiAdminPosts = () => {
 
 			if (login !== '' && checkLogin.dataCount >= 1) {
 				setError('Логин занят')
+				setLoader(false)
+
 				return
 			}
 
@@ -86,12 +93,18 @@ const YangiAdminPosts = () => {
 
 			if (res.error) {
 				setError(res.error)
+				setLoader(false)
+
 				return
 			}
 
 			setConfirm(true)
+			setLoader(false)
+			setError('Успешно!')
 		} catch (error) {
 			setError(error.message)
+			setLoader(false)
+
 			console.log(error)
 		}
 	}
@@ -110,6 +123,9 @@ const YangiAdminPosts = () => {
 			setModificator('')
 		}
 	}
+
+	if (loader) return <Loading />
+
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>
