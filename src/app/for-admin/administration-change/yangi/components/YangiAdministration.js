@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createAdministration } from '@/app/_actions/postActions'

@@ -3,7 +3,7 @@
 import { updatePostsSubjects } from '@/app/_actions/postActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
 
@@ -266,7 +266,7 @@ const ChangeMaterialsPost = ({ data }) => {
 				<input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
 			</label>
 			<label>
-				Идентификатор
+				ID предмета / учителя
 				<input placeholder='Пример: math-for-manage' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 			</label>
 			<label>
@@ -305,9 +305,9 @@ const ChangeMaterialsPost = ({ data }) => {
 							</div>
 						</div>
 						{item.isLink && (
-							<p className='errorMessage not-clickable'>{`Проверьте чтобы у учителя был указан ID "${name}" и выбран соответствующий номер ${
-								index + 1
-							}`}</p>
+							<p className='errorMessage not-clickable'>{`Проверьте чтобы у учителя был указан ID "${name}${
+								index !== 1 ? '' : `-${index + 1}`
+							}"`}</p>
 						)}
 					</label>
 					{index + 1 === teacherInfo.length && (

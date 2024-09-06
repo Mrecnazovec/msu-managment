@@ -3,7 +3,7 @@
 import { updatePostsTeachers } from '@/app/_actions/postActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
 
@@ -16,6 +16,7 @@ const ChangeAdministration = ({ data }) => {
 	const [href, setHref] = useState(data[0].href)
 	const [link, setLink] = useState(data[0].link)
 	const [span, setSpan] = useState(data[0].span)
+	const [personId, setPersonId] = useState(data[0].personId)
 
 	const [selectedFile, setSelectedFile] = useState(null)
 	const { data: session, status } = useSession()
@@ -77,7 +78,8 @@ const ChangeAdministration = ({ data }) => {
 				modificator == data[0].modificator &&
 				href == data[0].href &&
 				link == data[0].link &&
-				span == data[0].span
+				span == data[0].span &&
+				personId == data[0].personId
 			) {
 				setError('Данные не изменились')
 				return
@@ -92,7 +94,7 @@ const ChangeAdministration = ({ data }) => {
 
 			const path = !result ? imgPath : result.path.replace(/\\/g, '/')
 
-			const object = { id, name, about, modificator, href, link, span, path }
+			const object = { id, name, about, modificator, href, link, span, path, personId }
 
 			const res = await updatePostsTeachers(object)
 
@@ -113,7 +115,7 @@ const ChangeAdministration = ({ data }) => {
 		setConfirm(false)
 	}
 	const toNew = () => {
-		router.replace(`/university/administration`)
+		router.replace(`/university/teachers/#${personId}`)
 	}
 	const modificatorChange = () => {
 		if (modificator === '') {
@@ -125,7 +127,7 @@ const ChangeAdministration = ({ data }) => {
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>
-				Перейти к учителям
+				Перейти к {name}
 			</button>
 			<label className='img-label'>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />
@@ -161,15 +163,19 @@ const ChangeAdministration = ({ data }) => {
 			</label>
 			<label>
 				Название вкладки
-				<input type='text' value={span} onChange={(e) => setSpan(e.target.value)} />
+				<input type='text' placeholder='Пример: "Предмет"' value={span} onChange={(e) => setSpan(e.target.value)} />
 			</label>
 			<label>
 				Название ссылки
-				<input type='text' value={link} onChange={(e) => setLink(e.target.value)} />
+				<input type='text' placeholder='Пример: "Математика для менеджеров"' value={link} onChange={(e) => setLink(e.target.value)} />
 			</label>
 			<label>
 				Ссылка
-				<input type='text' value={href} onChange={(e) => setHref(e.target.value)} />
+				<input type='text' placeholder='Пример: "/for-students/materials/math-for-manage"' value={href} onChange={(e) => setHref(e.target.value)} />
+			</label>
+			<label>
+				ID учителя / предмета
+				<input type='text' placeholder='Пример: "math-for-manage"' value={personId} onChange={(e) => setPersonId(e.target.value)} />
 			</label>
 			<label>
 				Широкое фото

@@ -15,12 +15,18 @@ form {
 		cursor: pointer;
 		min-width: 360px;
 		min-height: 240px;
+		height: fit-content;
 		align-self: center;
 
 		@include mixins.center;
 
 		svg {
 			color: var(--color-gold);
+		}
+		img {
+			width: 360px;
+			height: 240px;
+			max-width: 100%;
 		}
 	}
 	.preview-change {
@@ -31,6 +37,7 @@ form {
 	.img-label {
 		width: fit-content;
 		text-align: center;
+		cursor: pointer;
 	}
 
 	label {

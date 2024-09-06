@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createPostsMentors } from '@/app/_actions/postActions'
@@ -65,7 +65,7 @@ const YangiMentorsPosts = () => {
 		e.preventDefault()
 		const formData = new FormData()
 		formData.set('file', selectedFile)
-		formData.set('folder', 'administration')
+		formData.set('folder', 'mentors')
 
 		try {
 			const response = await fetch('/api/upload', {

@@ -53,7 +53,7 @@ const teachersChange = async ({ searchParams }) => {
 						<div className='newsContent'>
 							{data.map((item) => (
 								<div key={item._id} className='news-item'>
-									<Link href={`/university/teachers`}>{item.name}</Link>
+									<Link href={`/university/teachers#${item.personId}`}>{item.name}</Link>
 									<div className='btn-box'>
 										<ChangeButton text='Изменить' href={`/for-admin/teachers-change/${item._id}`} />
 										<DeleteButton id={item._id} action='deleteTeachers'/>

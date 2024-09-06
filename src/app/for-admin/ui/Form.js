@@ -1,6 +1,6 @@
 'use client'
 
-import { updatePostsForAdmin } from '@/app/_actions/postActions'
+import { checkPostsForAdmin, updatePostsForAdmin } from '@/app/_actions/postActions'
 import Loading from '@/app/loading'
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
@@ -68,7 +68,14 @@ const Form = ({ param }) => {
 		formData.set('folder', 'avatar')
 
 		try {
-			if (fullName == param[0].content && login == param[1].content && password == param[2].content && !selectedFile && imgPath == param[3].imgPath && modificator == param[3].modificator) {
+			if (
+				fullName == param[0].content &&
+				login == param[1].content &&
+				password == param[2].content &&
+				!selectedFile &&
+				imgPath == param[3].imgPath &&
+				modificator == param[3].modificator
+			) {
 				setError('Данные не изменились')
 				return
 			}
@@ -82,8 +89,16 @@ const Form = ({ param }) => {
 
 			const path = !result ? imgPath : result.path.replace(/\\/g, '/')
 
+			const check = { login }
+
+			const checkLogin = await checkPostsForAdmin(check)
+
+			if (login !== param[1].content && checkLogin.dataCount >= 1) {
+				setError('Логин занят')
+				return
+			}
+
 			const object = { userId, fullName, login, password, modificator, path }
-			console.log(object)
 
 			const res = await updatePostsForAdmin(object)
 
@@ -93,8 +108,10 @@ const Form = ({ param }) => {
 			}
 
 			if (res.success) {
+				setError('Успешно изменено!')
 				setIsReady(true)
 			} else {
+				setError('Успешно изменено!')
 				setIsReady(true)
 			}
 		} catch (error) {
@@ -238,7 +255,9 @@ const Form = ({ param }) => {
 				{passwordState.text}
 			</button>
 			{error && <div className='errorMessage'>{error}</div>}
-			<button className='confirmButton' type='submit'>Принять изменения</button>
+			<button className='confirmButton' type='submit'>
+				Принять изменения
+			</button>
 			{isReady && (
 				<Link className='ready' href='/for-admin/auth' onClick={signOut}>
 					Чтобы изменения вступили в силу, требуется перезайти в аккаунт

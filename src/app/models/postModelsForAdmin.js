@@ -24,16 +24,24 @@ const newShema = new Schema(
 		},
 		imgPath: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		modificator: {
 			type: String,
-			request: false,
-		}
+			required: false,
+		},
+		initialName: {
+			type: String,
+			required: true,
+		},
+		gender: {
+			type: String,
+			required: true,
+		},
 	},
 	{ timestamps: true }
 )
 
 const PostModelsForAdmin = models.forAdmin || model('forAdmin', newShema)
 
-export default PostModelsForAdmin;
+export default PostModelsForAdmin

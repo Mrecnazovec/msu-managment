@@ -14,6 +14,7 @@ form {
 		cursor: pointer;
 		width: 360px;
 		height: 240px;
+
 		align-self: center;
 
 		@include mixins.center;
@@ -21,6 +22,10 @@ form {
 		svg {
 			color: var(--color-gold);
 		}
+		img {
+			height: auto;
+		}
+
 	}
 	.preview-change {
 		color: var(--color-red);
@@ -30,6 +35,8 @@ form {
 	.img-label {
 		width: fit-content;
 		text-align: center;
+		cursor: pointer;
+
 	}
 
 	label {

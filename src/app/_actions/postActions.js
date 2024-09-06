@@ -231,6 +231,7 @@ export async function updatePostsTeachers(object) {
 					href: object.href,
 					link: object.link,
 					span: object.span,
+					personId: object.personId,
 				},
 			}
 		)
@@ -252,6 +253,7 @@ export async function createPostsTeachers(object) {
 			href: object.href,
 			link: object.link,
 			span: object.span,
+			personId: object.personId,
 		})
 
 		return { success: update.acknowledged }
@@ -566,8 +568,97 @@ export async function updatePostsForAdmin(object) {
 				},
 			}
 		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({fullName: object.fullName}).countDocuments({})))
+
+
+
+		return { success: update.nModified > 0, dataCount: dataCount }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+export async function checkPostsForAdmin(check) {
+	try {
+		await connectDB()
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login: check.login}).countDocuments({})))
+
+
+
+		return { dataCount: dataCount }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function getPostsForAdminChange(perPage, page) {
+	try {
+		await connectDB()
+		const data = JSON.parse(
+			JSON.stringify(
+				await PostModelsForAdmin.find()
+					.skip(perPage * (page - 1))
+					.limit(perPage)
+			)
+		)
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.countDocuments({})))
+
+		return { data, dataCount }
+	} catch (error) {
+		return error
+	}
+}
+export async function deletePostsForAdminChange(id) {
+	try {
+		await connectDB()
+		const data = JSON.parse(JSON.stringify(await PostModelsForAdmin.deleteOne({ _id: id })))
+
+		return { data }
+	} catch (error) {
+		return error
+	}
+}
+export async function updatePostsForAdminChange(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsForAdmin.updateOne(
+			{ _id: object.id },
+			{
+				$set: {
+					imgPath: object.path,
+					fullName: object.fullName,
+					password: object.password,
+					modificator: object.modificator,
+					role: object.role,
+					login: object.login,
+					gender: object.gender,
+					roleLevel: object.roleLevel,
+					initialName: object.initialName,
+				},
+			}
+		)
 
 		return { success: update.nModified > 0 }
+	} catch (error) {
+		return { error: error.message }
+	}
+}
+
+export async function createPostsForAdminChange(object) {
+	try {
+		await connectDB()
+		const update = await PostModelsForAdmin.insertMany({
+			imgPath: object.path,
+			fullName: object.fullName,
+			password: object.password,
+			modificator: object.modificator,
+			role: object.role,
+			login: object.login,
+			gender: object.gender,
+			roleLevel: object.roleLevel,
+			initialName: object.initialName,
+		})
+
+		return { success: update.acknowledged }
 	} catch (error) {
 		return { error: error.message }
 	}

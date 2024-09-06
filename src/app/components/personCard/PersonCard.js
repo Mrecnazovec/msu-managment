@@ -18,7 +18,7 @@ const PersonCard = (props) => {
 
 	return (
 		<div className='personCardMain'>
-			<div id={item.personId ? item.personId : ''} key={item._id} className='personCard'>
+			<div id={item.personId ? item.personId : item._id} key={item._id} className='personCard'>
 				<div className='container'>
 					<div className='personCard-box'>
 						<h2 className='title'>{item.name}</h2>

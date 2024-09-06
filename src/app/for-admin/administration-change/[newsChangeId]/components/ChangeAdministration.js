@@ -3,7 +3,7 @@
 import { updateAdministration } from '@/app/_actions/postActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './changePostNews.scss'
 
@@ -113,7 +113,7 @@ const ChangeAdministration = ({ data }) => {
 		setConfirm(false)
 	}
 	const toNew = () => {
-		router.replace(`/university/administration`)
+		router.replace(`/university/administration/#${id}`)
 	}
 	const modificatorChange = () => {
 		if (modificator === '') {
@@ -125,7 +125,7 @@ const ChangeAdministration = ({ data }) => {
 	return (
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<button onClick={toNew} className='submitButton start' type='submit'>
-				Перейти к руководству
+				Перейти к {name}
 			</button>
 			<label className='img-label'>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />

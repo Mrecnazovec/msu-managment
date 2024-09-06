@@ -30,6 +30,10 @@ const newShema = new Schema(
 			type: String,
 			required: false,
 		},
+		personId: {
+			type: String,
+			required: false,
+		},
 	},
 	{ timestamps: true }
 )

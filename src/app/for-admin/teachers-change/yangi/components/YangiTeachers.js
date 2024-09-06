@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 import { createPostsTeachers } from '@/app/_actions/postActions'
@@ -15,6 +15,8 @@ const YangiAdministration = () => {
 	const [href, setHref] = useState('')
 	const [link, setLink] = useState('')
 	const [span, setSpan] = useState('')
+	const [personId, setPersonId] = useState('')
+
 
 	const [selectedFile, setSelectedFile] = useState(null)
 	const { data: session, status } = useSession()
@@ -65,7 +67,7 @@ const YangiAdministration = () => {
 		e.preventDefault()
 		const formData = new FormData()
 		formData.set('file', selectedFile)
-		formData.set('folder', 'administration')
+		formData.set('folder', 'teachers')
 
 		try {
 			const response = await fetch('/api/upload', {
@@ -77,7 +79,7 @@ const YangiAdministration = () => {
 
 			const path = !result ? imgPath : result.path.replace(/\\/g, '/')
 
-			const object = { name, about, modificator, href, link, span, path }
+			const object = { name, about, modificator, href, link, span, path, personId }
 
 			const res = await createPostsTeachers(object)
 
@@ -147,15 +149,19 @@ const YangiAdministration = () => {
 			</label>
 			<label>
 				Название вкладки
-				<input type='text' value={span} onChange={(e) => setSpan(e.target.value)} />
+				<input type='text' placeholder='Пример: "Предмет"' value={span} onChange={(e) => setSpan(e.target.value)} />
 			</label>
 			<label>
 				Название ссылки
-				<input type='text' value={link} onChange={(e) => setLink(e.target.value)} />
+				<input type='text' placeholder='Пример: "Математика для менеджеров"' value={link} onChange={(e) => setLink(e.target.value)} />
 			</label>
 			<label>
 				Ссылка
-				<input type='text' value={href} onChange={(e) => setHref(e.target.value)} />
+				<input type='text' placeholder='Пример: "/for-students/materials/math-for-manage"' value={href} onChange={(e) => setHref(e.target.value)} />
+			</label>
+			<label>
+				ID учителя / предмета
+				<input type='text' placeholder='Пример: "math-for-manage"' value={personId} onChange={(e) => setPersonId(e.target.value)} />
 			</label>
 			<label>
 				Широкое фото

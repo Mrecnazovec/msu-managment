@@ -3,7 +3,7 @@
 import { createPostsSubjects } from '@/app/_actions/postActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
 
@@ -261,7 +261,7 @@ const YangiMaterialsPost = () => {
 				<input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
 			</label>
 			<label>
-				Идентификатор
+				ID предмета / учителя
 				<input placeholder='Пример: math-for-manage' type='text' value={name} onChange={(e) => setName(e.target.value)} />
 			</label>
 			<label>

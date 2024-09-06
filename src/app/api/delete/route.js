@@ -1,4 +1,4 @@
-import { deletePostsAdministration, deletePostsMentors, deletePostsNews, deletePostsSoviet, deletePostsSubjects, deletePostsTeachers } from '@/app/_actions/postActions'
+import { deletePostsAdministration, deletePostsForAdminChange, deletePostsMentors, deletePostsNews, deletePostsSoviet, deletePostsSubjects, deletePostsTeachers } from '@/app/_actions/postActions'
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(request) {
@@ -27,8 +27,8 @@ export async function DELETE(request) {
     result = await deletePostsMentors(id);
 
 	}
-	if (action === 'deleteSubject') {
-    result = await deletePostsSubjects(id);
+	if (action === 'deleteAdmin') {
+    result = await deletePostsForAdminChange(id);
 
 	}
 
