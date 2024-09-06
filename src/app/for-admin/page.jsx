@@ -11,7 +11,6 @@ import './page.scss'
 const ForAdmin = () => {
 	const { data: session, status } = useSession()
 	const info = session?.user?.name
-	console.log(info)
 
 	if (status === 'loading') {
 		return <Loading />
