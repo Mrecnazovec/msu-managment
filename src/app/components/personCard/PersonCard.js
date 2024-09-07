@@ -23,10 +23,10 @@ const PersonCard = (props) => {
 					<div className='personCard-box'>
 						<h2 className='title'>{item.name}</h2>
 						<p className='text'>{item.about}</p>
-						{item.href && item.link && item.span ? (
+						{item.link && item.span ? (
 							<div className='link-box'>
 								<span>
-									{item.span}: <Link href={item.href}>{item.link}</Link>
+									{item.span}: {item.href ? <Link href={item.href}>{item.link}</Link> : item.link}
 								</span>
 							</div>
 						) : (
@@ -34,14 +34,7 @@ const PersonCard = (props) => {
 						)}
 					</div>
 					<div className='img-box'>
-						<Image
-							alt={item.name}
-							width={300}
-							height={383}
-							onError={handleImageError} // Обработчик ошибки
-							className={imgClass} // Используем состояние для класса
-							src={imgSrc}
-						/>
+						<Image alt={item.name} width={300} height={383} onError={handleImageError} className={imgClass} src={imgSrc} />
 					</div>
 				</div>
 			</div>
