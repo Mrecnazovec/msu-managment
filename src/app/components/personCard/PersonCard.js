@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
-import './personCard.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
+import './personCard.scss'
 
 const PersonCard = (props) => {
 	const item = props.data
