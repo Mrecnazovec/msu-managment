@@ -1,18 +1,19 @@
 'use client'
 
 import { createPostsNews } from '@/app/_actions/postActions'
+import Loading from '@/app/loading'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import './yangiPostNews.scss'
-import Loading from '@/app/loading'
 
 const YangiPostNews = () => {
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState([''])
 	const [imgPath, setImgPath] = useState('')
 	const [selectedFile, setSelectedFile] = useState(null)
+	const [auto, setAuto] = useState(false)
 	const { data: session, status } = useSession()
 	const [error, setError] = useState('')
 	const [confirm, setConfirm] = useState(false)
@@ -83,7 +84,7 @@ const YangiPostNews = () => {
 
 			console.log(path)
 
-			const object = { title, description, path }
+			const object = { title, description, path, auto }
 
 			const res = await createPostsNews(object)
 
@@ -110,6 +111,13 @@ const YangiPostNews = () => {
 		router.replace('/news')
 		setConfirm(false)
 	}
+	const autoChange = () => {
+		if (auto === false) {
+			setAuto(true)
+		} else {
+			setAuto(false)
+		}
+	}
 
 	if (loader) return <Loading />
 
@@ -117,9 +125,9 @@ const YangiPostNews = () => {
 		<form onSubmit={handleSubmitTwo} className='form'>
 			<label className='img-label'>
 				<input onChange={handleFileChange} className='visually-hidden' type='file' />
-				<div className='preview-box second'>
+				<div className={`preview-box second ${auto && 'auto'}`}>
 					{imgPath ? (
-						<Image alt='' width={360} height={240} className='preview' src={imgPath} />
+						<Image alt='' width={360} height={240} className={`preview ${auto && 'auto'}`} src={imgPath} />
 					) : (
 						<svg width='200' height='200' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'>
 							<path
@@ -164,8 +172,26 @@ const YangiPostNews = () => {
 							)}
 						</div>
 					)}
+					<label>
+						Широкое фото
+						<div onClick={autoChange} className={`check-box ${auto === false ? '' : 'auto'}`}>
+							<div className='check-svg'>
+								<svg version='1.1' viewBox='0 0 548.873 548.873' width='30' height='30'>
+									<g>
+										<g>
+											<polygon
+												points='449.34,47.966 195.46,301.845 99.533,205.917 0,305.449 95.928,401.378 195.46,500.907 294.99,401.378 548.873,147.496 '
+												fill='#000'
+											></polygon>
+										</g>
+									</g>
+								</svg>
+							</div>
+						</div>
+					</label>
 				</div>
 			))}
+
 			{error && <div className='errorMessage'>{error}</div>}
 			{!confirm && (
 				<button className='submitButton' type='submit'>

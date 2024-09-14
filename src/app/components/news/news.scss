@@ -5,6 +5,10 @@
 	padding-block: var(--section-padding-y);
 	margin-bottom: calc(var(--section-margin-y)*2);
 
+	.auto {
+		height: auto;
+	}
+
 	h2 {
 		margin: 0;
 		margin-bottom: var(--margin-base);

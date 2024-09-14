@@ -91,6 +91,9 @@ main {
 
 						@include mixins.img-effect;
 					}
+					.auto {
+						height: auto;
+					}
 				}
 
 				&-title {
@@ -124,4 +127,5 @@ main {
 			}
 		}
 	}
+
 }

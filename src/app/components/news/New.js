@@ -18,7 +18,7 @@ const New = (props) => {
 		<div key={item._id} className={className}>
 			<Link href={`/news/${item._id}`}>
 				<div className={`${className}-box`}>
-					<Image onError={handleImageError} src={imgSrc} width={200} height={200} alt={item.title}></Image>
+					<Image className={`${item.auto && 'auto'}`} onError={handleImageError} src={imgSrc} width={200} height={200} alt={item.title}></Image>
 				</div>
 				<p className={`${className}-title`}>{item.title}</p>
 

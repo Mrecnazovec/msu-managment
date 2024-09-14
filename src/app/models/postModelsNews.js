@@ -14,10 +14,14 @@ const newShema = new Schema(
 			type: Array,
 			required: true,
 		},
+		auto: {
+			type: Boolean,
+			required: false,
+		},
 	},
 	{ timestamps: true }
 )
 
 const PostModelNews = models.new || model('new', newShema)
 
-export default PostModelNews;
+export default PostModelNews

@@ -64,6 +64,7 @@ export async function updatePostsNews(object) {
 					imgPath: object.path,
 					title: object.title,
 					description: object.description,
+					auto: object.auto,
 				},
 			}
 		)
@@ -81,6 +82,7 @@ export async function createPostsNews(object) {
 			imgPath: object.path,
 			title: object.title,
 			description: object.description,
+			auto: object.auto,
 		})
 
 		return { success: update.acknowledged }
@@ -568,9 +570,7 @@ export async function updatePostsForAdmin(object) {
 				},
 			}
 		)
-		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({fullName: object.fullName}).countDocuments({})))
-
-
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({ fullName: object.fullName }).countDocuments({})))
 
 		return { success: update.nModified > 0, dataCount: dataCount }
 	} catch (error) {
@@ -580,9 +580,7 @@ export async function updatePostsForAdmin(object) {
 export async function checkPostsForAdmin(check) {
 	try {
 		await connectDB()
-		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({login: check.login}).countDocuments({})))
-
-
+		const dataCount = JSON.parse(JSON.stringify(await PostModelsForAdmin.find({ login: check.login }).countDocuments({})))
 
 		return { dataCount: dataCount }
 	} catch (error) {

@@ -56,7 +56,7 @@ const NewsId = async ({ params }) => {
 							<ChangeButton text='Изменить' href={`/for-admin/news-change/${params.newsId}`} />
 							<div className='newSolo-img'>
 								{data[0].imgPath ? (
-									<Image alt={data[0].title} width={300} height={300} src={data[0].imgPath}></Image>
+									<Image className={data[0].auto && 'auto'} alt={data[0].title} width={300} height={300} src={data[0].imgPath}></Image>
 								) : (
 									<svg width='200' height='200' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'>
 										<path
