@@ -25,20 +25,19 @@
 	--section-padding-y: 25px;
 	--section-margin-y: var(--section-padding-y);
 
-
 	--button-height: 30px;
 
 	--transition-duration: 200ms;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
 	--color-main: #fff;
-	--color-secondary: #FAF5F6;
+	--color-secondary: #faf5f6;
 	--color-paragraph: #575757;
 	--color-gold: #efca7a;
 	--color-red: #7d0a35;
 	--color-dark-red: #3e0319;
-	--color-white: #FFF;
+	--color-white: #fff;
 	--color-dark: #000;
 	--color-text: var(--color-dark);
 
@@ -58,9 +57,7 @@
 	--section-padding-y: 25px;
 	--section-margin-y: var(--section-padding-y);
 
-
 	--button-height: 30px;
 
 	--transition-duration: 200ms;
-
 }

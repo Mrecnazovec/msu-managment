@@ -172,26 +172,25 @@ const YangiPostNews = () => {
 							)}
 						</div>
 					)}
-					<label>
-						Широкое фото
-						<div onClick={autoChange} className={`check-box ${auto === false ? '' : 'auto'}`}>
-							<div className='check-svg'>
-								<svg version='1.1' viewBox='0 0 548.873 548.873' width='30' height='30'>
-									<g>
-										<g>
-											<polygon
-												points='449.34,47.966 195.46,301.845 99.533,205.917 0,305.449 95.928,401.378 195.46,500.907 294.99,401.378 548.873,147.496 '
-												fill='#000'
-											></polygon>
-										</g>
-									</g>
-								</svg>
-							</div>
-						</div>
-					</label>
 				</div>
 			))}
-
+			<label>
+				Широкое фото
+				<div onClick={autoChange} className={`check-box ${auto === false ? '' : 'auto'}`}>
+					<div className='check-svg'>
+						<svg version='1.1' viewBox='0 0 548.873 548.873' width='30' height='30'>
+							<g>
+								<g>
+									<polygon
+										points='449.34,47.966 195.46,301.845 99.533,205.917 0,305.449 95.928,401.378 195.46,500.907 294.99,401.378 548.873,147.496 '
+										fill='#000'
+									></polygon>
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</label>
 			{error && <div className='errorMessage'>{error}</div>}
 			{!confirm && (
 				<button className='submitButton' type='submit'>
