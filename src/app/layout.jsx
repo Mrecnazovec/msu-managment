@@ -14,7 +14,6 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-	redirect('https://msu-management.uz')
 	return (
 		<html lang='en'>
 			<body>
